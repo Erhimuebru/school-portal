@@ -1,11 +1,22 @@
 import './App.css'
+import { Routes, Route } from "react-router-dom";
+import Home from './pages/Home/Home';
+import Signin from './pages/Signin/Signin';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 function App() {
 
 
   return (
     <>
-   <h1 className='text-red-500'>heeeeelllloooo</h1>
+
+<Routes>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/sign-in" element={<Signin/>}/>
+              <Route path="dashboard" element={ <Dashboard/> }/>
+             
+                
+          </Routes>
     </>
   )
 }

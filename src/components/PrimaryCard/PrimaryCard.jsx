@@ -1,7 +1,7 @@
 const PrimaryCard = () => {
     return ( 
         <>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-20 mb-20 ml-16 mr-16 sm:ml-4 bg-white">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-20 mb-20 ml-16 mr-16 sm:ml-2 bg-white">
             <div className="w-full">
                 <img
                     src="https://res.cloudinary.com/dmfb370xe/image/upload/v1690588392/WhatsApp_Image_2023-07-29_at_12.51.28_AM_mhgzos.jpg"

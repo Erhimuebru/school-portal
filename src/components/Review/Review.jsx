@@ -8,7 +8,7 @@ const Review = () => {
     <div className="bg-[pink] pt-10 pb-10">
         <p className="text-center font-extrabold">Parent Testimonials</p>
       <h3 className="text-center text-3xl pb-10">
-We make sure our parents get the best of their wards</h3>
+We make sure our parents get the best of their words</h3>
 
       <div className="swallow-card-container overflow-x-auto">
         <div className="flex flex-row rounded-sm ml-4 sm:ml-4">

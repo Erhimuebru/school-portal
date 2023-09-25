@@ -218,14 +218,16 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { BsPersonCircle } from 'react-icons/bs'; // Import the book icon
+import { BsPersonCircle, BsPeople, BsReceipt  } from 'react-icons/bs'; // Import the book icon
+import { BookOpenIcon, ReceiptPercentIcon, ArrowLeftOnRectangleIcon } from '@heroicons/react/24/solid';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const [user, setUser] = useState(null);
   const [userInfoVisible, setUserInfoVisible] = useState(false);
   const [examScoresVisible, setExamScoresVisible] = useState(false);
   const [testScoresVisible, setTestScoresVisible] = useState(false); // State for examScores visibility
-
+  const navigate = useNavigate();
   const id = localStorage.getItem('id');
 
   useEffect(() => {
@@ -263,13 +265,23 @@ const Dashboard = () => {
     setTestScoresVisible(!testScoresVisible);
   };
 
+
+
+  const handleSignOut = () => {
+    // Clear the user's session (e.g., remove JWT token from local storage)
+    localStorage.removeItem('token');
+    localStorage.removeItem('id');
+
+    // Navigate to the home screen
+    navigate('/');
+  };
   return (
-    <div className="min-h-screen flex items-center gap-10 justify-center bg-gray-100">
+    <div className="min-h-screen pt-10 pb-12 flex items-center gap-10 justify-center bg-gray-100">
        <div className="grid lg:grid-cols-2 gap-8 w-full sm:w-11/12 md:w-3/4 lg:w-3/5">
 
 
 
-      <div  onClick={toggleUserInfo} className="bg-[red] ml-6 sm:ml-5 p-8 rounded shadow-md w-72 lg:w-96 sm:w-20">
+      <div  onClick={toggleUserInfo} className="bg-[blue] ml-6 sm:ml-5 p-8 rounded shadow-md w-72 lg:w-96 sm:w-20">
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-extrabold">Student Profile</h2>
           <div className="flex space-x-4">
@@ -302,14 +314,14 @@ const Dashboard = () => {
 
 
      
-        <div onClick={toggleExamScores} className="bg-[red] ml-6 sm:ml-5 p-8 rounded shadow-md w-72 lg:w-96 sm:w-20">
+        <div onClick={toggleExamScores} className="bg-[#00aacc] ml-6 sm:ml-5 p-8 rounded shadow-md w-72 lg:w-96 sm:w-20">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-extrabold">Results</h2>
             <button
               className="text-gray-600 hover:text-gray-800"
               onClick={toggleExamScores}
             >
-              <BsPersonCircle />
+              <BsReceipt className='w-8 h-8' />
             </button>
           </div>
           {examScoresVisible && (
@@ -337,14 +349,14 @@ const Dashboard = () => {
 
 
 
-        <div onClick={toggleTestScores} className="bg-[red] ml-6 sm:ml-5 p-8 rounded shadow-md w-72 lg:w-96 sm:w-20">
+        <div onClick={toggleTestScores} className="bg-[#00fffb] ml-6 sm:ml-5 p-8 rounded shadow-md w-72 lg:w-96 sm:w-20">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-extrabold">Previous Results</h2>
             <button
               className="text-gray-600 hover:text-gray-800"
               onClick={toggleTestScores}
             >
-              <BsPersonCircle />
+              <ReceiptPercentIcon className='w-8 h-8' />
             </button>
           </div>
           {testScoresVisible && (
@@ -372,15 +384,15 @@ const Dashboard = () => {
 
 
 
-        <div onClick={toggleUserInfo} className="bg-[red] ml-6 sm:ml-5 p-8 rounded shadow-md w-72 lg:w-96 sm:w-20">
+        <div onClick={toggleUserInfo} className="bg-[yellow] ml-6 sm:ml-5 p-8 rounded shadow-md w-72 lg:w-96 sm:w-20">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-extrabold">Subjects For The Term</h2>
+          <h2 className="font-extrabold">Curriculum</h2>
           <div className="flex space-x-4">
             <button
               className="text-gray-600 hover:text-gray-800"
               onClick={toggleUserInfo}
             >
-              <BsPersonCircle />
+              <BookOpenIcon className='w-8 h-8' />
             </button>
           </div>
         </div>
@@ -405,15 +417,15 @@ const Dashboard = () => {
 
 
 
-      <div   onClick={toggleUserInfo} className="bg-[red] ml-6 sm:ml-5 p-8 rounded shadow-md w-72 lg:w-96 sm:w-20">
+      <div   onClick={toggleUserInfo} className="bg-[green] ml-6 sm:ml-5 p-8 rounded shadow-md w-72 lg:w-96 sm:w-20">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-extrabold">Parent Review</h2>
+          <h2 className="font-extrabold">Parent Remark</h2>
           <div className="flex space-x-4">
             <button
               className="text-gray-600 hover:text-gray-800"
               onClick={toggleUserInfo}
             >
-              <BsPersonCircle />
+              <BsPeople className='w-8 h-8'/>
             </button>
           </div>
         </div>
@@ -434,6 +446,34 @@ const Dashboard = () => {
           </div>
         )}
       </div>
+
+
+
+
+      <div  onClick={handleSignOut}   className="bg-[red] ml-6 sm:ml-5 p-8 rounded shadow-md w-72 lg:w-96 sm:w-20">
+      {/* <button
+              className="text-red-600 hover:text-red-800"
+              onClick={handleSignOut}
+            >
+              <ArrowLeftOnRectangleIcon className='w-8 h-8' />
+            </button> */}
+
+<div className="flex items-center justify-between mb-4">
+          <h2 className="font-extrabold">Sign Out</h2>
+          <div className="flex space-x-4">
+            <button
+              className="text-gray-600 hover:text-gray-800"
+              onClick={handleSignOut} 
+            >
+              <ArrowLeftOnRectangleIcon className='w-8 h-8'/>
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+
+
     
     </div>
     </div>

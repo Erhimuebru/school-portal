@@ -5,13 +5,13 @@ import PrimaryCard from "../../components/PrimaryCard/PrimaryCard";
 import Principle from "../../components/Principle/Principle";
 import Review from "../../components/Review/Review";
 import SecondaryCard from "../../components/SecondaryCard/SecondaryCard";
-import SubNav from "../../components/SubNav/SubNav";
+// import SubNav from "../../components/SubNav/SubNav";
 
 const Home = () => {
     return ( 
         <>
-           <SubNav />
-        <Navbar />
+           {/* <SubNav /> */}
+        {/* <Navbar /> */}
         <Hero />
         <PrimaryCard/>
         <SecondaryCard/>

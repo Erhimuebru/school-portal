@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import images from './CasImage';
-
+import { Link } from 'react-router-dom';
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -35,10 +35,10 @@ const Carousel = () => {
         <img src={images[currentIndex].img} alt="Carousel Slide" className="hero-image" />
         <div className="absolute inset-0  justify-center items-center text-center text-white">
         <div className="hero-content">
-          <p className="hero-title text-center text-10xl text-white">
+          <p className="hero-title text-center text-10xl mb-6 text-white">
           {images[currentIndex].text}
         </p>
-        <p className='bg-red-950 p-4 rounded-full'>SCHOOL PORTAL</p>
+       <Link to="/sign-in" > <p className='bg-red-950 p-4 rounded-full'> SCHOOL PORTAL</p></Link>
         </div>
       </div>
    

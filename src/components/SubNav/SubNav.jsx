@@ -14,7 +14,6 @@ const SubNav = () => {
                 <SocialIcon url='https://www.facebook.com/'  fgColor='gray' bgColor='transparent'/>
                 <SocialIcon url='https://twitter.com/'  fgColor='gray' bgColor='transparent'/>
                 <SocialIcon url='https://www.instagram.com/'  fgColor='gray' bgColor='transparent'/>
-                 <SocialIcon url='https://www.linkedin.com/' fgColor='gray' bgColor='transparent'/>
                
                
                </div>

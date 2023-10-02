@@ -11,13 +11,13 @@ const Home = () => {
     return ( 
         <>
            {/* <SubNav /> */}
-        {/* <Navbar /> */}
+        <Navbar />
         <Hero />
         <PrimaryCard/>
         <SecondaryCard/>
         <Principle/>
         <Review/>
-        <Footer/>
+        {/* <Footer/> */}
         </>
      );
 }

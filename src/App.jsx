@@ -5,21 +5,23 @@ import Signin from './pages/Signin/Signin';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Navbar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
+import ExamScoresPage from './components/ExamScorePage/ExamScorePage';
 
 function App() {
 
 
   return (
     <>
-<Navbar/>
+{/* <Navbar/> */}
 <Routes>
               <Route path="/" element={<Home/>}/>
               <Route path="/sign-in" element={<Signin/>}/>
               <Route path="/dashboard" element={ <Dashboard/> }/>
-             
+              <Route path="/exam-scores" element={<ExamScoresPage/> }/>
+ 
                 
           </Routes>
-          <Footer/>
+          {/* <Footer/> */}
     </>
   )
 }

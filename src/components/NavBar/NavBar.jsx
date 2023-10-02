@@ -8,26 +8,7 @@ import SubNav from '../SubNav/SubNav';
 
 function Navbar() {
 
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    // Retrieve the user object from local storage
-    const storedUser = localStorage.getItem('user');
-
-    // Check if the user object exists in local storage
-    if (storedUser) {
-      // Parse the JSON string to get the user object
-      const userData = JSON.parse(storedUser);
-
-      // Ensure that the user object has the required properties (e.g., firstName)
-      if (userData && userData.firstName) {
-        // Set the user state with the retrieved user data
-        setUser(userData);
-      }
-    }
-  }, []);
-
-
-
+  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -85,16 +66,6 @@ function Navbar() {
 
         <div className='flex flex-1 justify-between items-center'>
      
-        {user && (
-        <div className="flex items-center">
-          {/* <img
-            src={user.imageUrl} // Replace with the user's image URL
-            alt={user.firstName} // Replace with appropriate alt text
-            className="w-8 h-8 rounded-full mr-2"
-          /> */}
-          <span>{user.surname}</span>
-        </div>
-      )}
           <div>
             <div className='sm:ml-20 lg:ml-20'>
               {/* <img src={Logo} alt="" /> */}
@@ -143,8 +114,12 @@ function Navbar() {
         {/* Desktop Menu */}
 
       </nav>
-    </header></>
+    </header>
+    </>
   );
 }
 
 export default Navbar;
+
+
+

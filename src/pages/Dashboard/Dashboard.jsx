@@ -309,9 +309,10 @@ const Dashboard = () => {
   };
 
   const handleExamScoresClick = () => {
-    // Assuming you have the user data with examScores property
+    console.log('User Data:', user);
     const examScores = user?.examScores;
-  navigate('/exam-scores', { state: { examScores: examScores } });
+    console.log('Exam Scores:', examScores);
+    navigate('/exam-scores', { state: { examScores: examScores } });
   };
 
   return (

@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import Navbar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import ExamScoresPage from './components/ExamScorePage/ExamScorePage';
+import ReviewComponent from './components/ReviewComponent/ReviewComponent';
 
 function App() {
 
@@ -18,10 +19,11 @@ function App() {
               <Route path="/sign-in" element={<Signin/>}/>
               <Route path="/dashboard" element={ <Dashboard/> }/>
               <Route path="/exam-scores" element={<ExamScoresPage/> }/>
- 
+              <Route path="/reviews" element={ <ReviewComponent/> }/>
+
                 
           </Routes>
-          {/* <Footer/> */}
+          <Footer/>
     </>
   )
 }

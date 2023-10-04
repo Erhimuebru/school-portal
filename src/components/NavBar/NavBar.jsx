@@ -5,6 +5,7 @@ import { BsPersonCircle } from 'react-icons/bs';
 import {PiGraduationCap, PiAddressBook} from 'react-icons/pi';
 import {PhoneIcon, HomeIcon, CalendarIcon,  } from '@heroicons/react/24/solid';
 import SubNav from '../SubNav/SubNav';
+import Header from '../Header/Head';
 
 function Navbar() {
 
@@ -34,7 +35,7 @@ function Navbar() {
             {isMobileMenuOpen ? (
               <FaTimes className="w-6 h-6 mr-20" />
             ) : (
-              <FaBars className="w-6 h-6 lg:mr-6" />
+              <FaBars className="w-6 h-6 mt-5 lg:mr-6" />
             )}
           </button>
 
@@ -69,7 +70,7 @@ function Navbar() {
           <div>
             <div className='sm:ml-20 lg:ml-20'>
               {/* <img src={Logo} alt="" /> */}
-              <h1>school logo</h1>
+            <Header/>
             </div></div>
           <div>
             <ul className="hidden sm:flex gap-6 space-x-4 mr-20">

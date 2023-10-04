@@ -1,19 +1,19 @@
 export const ReviewData =[
     {   
     id:'1',
-    name:"Manager, The Vineyard",
-    comments:"Our collaboration with Hotels Fashion has been a game-changer for us. The unique and beautifully designed products showcased in our hotel have received an overwhelmingly positive response from our guests",
+    name:"Mrs onyejekwe",
+    comments:"Top Schools is unlike any school. They have done their research and understand that children learn best by questioning, creating and applying knowledge. Through their many student-inspired projects and an interdisciplinary curriculum, my children are learning to be passionate, curious, creative and innovative. Loral Schools knows how to keep the children wanting to learn more"
      }
      ,
     {
     id:'2',
-    name:"Manager, Tobams ",
-    comments:"Hotels Fashion has provided an incredibale platform for me to showcase my designs to a wider audiens. The exposure and recognition i have gained through their hotel partnerships have been invaluable. They truly appreciate the work of designers"
+    name:"  Adigun Aisha",
+    comments:"The Top University Foundation College prepares you for the future, it is truly a home away from home. The serene hostel environment, easy access to educational resources and the qualified staff helped me settle in easily and the curriculum prepares you to take on the world"
     },
     {   
     id:'1',
     name:"Manager, Collxx",
-    comments:"As a designer, partnering with Hotels Fashion has been a rewarding experience. The opportunity to display my products in prestigious hotels has increased my brand visibility and boosted sales. Hotels Fashion has connected me with hotel clients",
+    comments:"Your teachers are awesome, you are doing a wonderful job and i am super grateful",
      }
      ,
     {

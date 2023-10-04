@@ -1,41 +1,23 @@
 const images = [
     {
-    img:"https://res.cloudinary.com/dmfb370xe/image/upload/v1690669622/hotel10_zupqmb.jpg",
-    text:"love",
+    img:"https://i.ytimg.com/vi/ys_cqR0rUCk/maxresdefault.jpg",
+    text:"Tops School. Providing the best foundation for students.",
     id:1
 },  {
-    img:"https://res.cloudinary.com/dmfb370xe/image/upload/v1690669622/hotel10_zupqmb.jpg",
-    text:"love2",
+    img:"https://res.cloudinary.com/dmfb370xe/image/upload/v1696414162/EVENTS/primary_two_fgowum.jpg",
+    text:"Career Day",
     id:2
 },  {
-    img:"https://res.cloudinary.com/dmfb370xe/image/upload/v1690669622/hotel10_zupqmb.jpg",
-    text:"love3",
+    img:"https://static.loralintlschools.sch.ng/assets/home/images/loral/justineelvisP_ew16.webp",
+    text:"SCHOOL CURRICULUM",
     id:3
 },  {
-    img:"https://res.cloudinary.com/dmfb370xe/image/upload/v1690669622/hotel10_zupqmb.jpg",
-    text:"love4",
+    img:"https://res.cloudinary.com/dmfb370xe/image/upload/v1696414162/EVENTS/primary_kgt3ik.jpg",
+    text:"  Registration Is Open Now.",
     id:4
-},  {
-    img:"https://res.cloudinary.com/dmfb370xe/image/upload/v1690669622/hotel10_zupqmb.jpg",
-    text:"love5",
-    id:5
-},  {
-    img:"https://res.cloudinary.com/dmfb370xe/image/upload/v1690669622/hotel10_zupqmb.jpg",
-    text:"love6",
-    id:6
-},  {
-    img:"https://res.cloudinary.com/dmfb370xe/image/upload/v1690669620/hotel15_mbm1vi.jpg",
-    text:"love7",
-    id:7
+
 }
-    // "",
-    // "https://res.cloudinary.com/dmfb370xe/image/upload/v1690669622/hotel11_qvukht.jpg",
-    // "https://res.cloudinary.com/dmfb370xe/image/upload/v1690669622/hotel14_ynv1fi.jpg",
-    // "https://res.cloudinary.com/dmfb370xe/image/upload/v1690669620/hotel15_mbm1vi.jpg",
-    // "https://res.cloudinary.com/dmfb370xe/image/upload/v1690669622/hotel10_zupqmb.jpg",
-    // "https://res.cloudinary.com/dmfb370xe/image/upload/v1690669622/hotel11_qvukht.jpg",
-    // "https://res.cloudinary.com/dmfb370xe/image/upload/v1690669622/hotel14_ynv1fi.jpg",
-    // ""
+   
   ];
   
   export default images;

@@ -2,7 +2,7 @@
 import React from "react";
 import "./Hero.css";
 import Carousel from "../Cas/Cas";
-import images from "../Cas/casImage";
+import images from "../Cas/CasImage";
 
 
 const Hero = () => {

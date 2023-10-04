@@ -5,7 +5,7 @@ const SecondaryCard = () => {
             
             <div className="flex flex-col lg:mt-24 lg:ml-20 sm:mt-10">
                 <h2 className=" text-gray-700 text-3xl mb-4">The Secondary School, Day, Festac Town</h2>
-                <p>At Loral International Day Secondary School, we maintain a culture of academic excellence which is supported by the proper mix of academic and leadership training into our curriculum. We deploy a rigorous but result-oriented academic system that trains our learners to imbibe the confidence and competence needed to soar ahead in a competitive environment.
+                <p>At The Top  Secondary School, we maintain a culture of academic excellence which is supported by the proper mix of academic and leadership training into our curriculum. We deploy a rigorous but result-oriented academic system that trains our learners to imbibe the confidence and competence needed to soar ahead in a competitive environment.
                     We have a calling to ensure the well-being of every member of the Loral family and to be a blessing to humanity. We know that no half measures has brought anybody to the pinnacle of success, therefore we approach every task with total commitment..</p>
               
               
@@ -18,12 +18,13 @@ const SecondaryCard = () => {
             </div>
             <div className="w-full">
                 <img
-                    src="https://res.cloudinary.com/dmfb370xe/image/upload/v1690588392/WhatsApp_Image_2023-07-29_at_12.51.28_AM_mhgzos.jpg"
+                    src="https://static.loralintlschools.sch.ng/assets/home/images/loral/justineelvisP_28.webp"
                     alt=""
-                    className="w-full h-full object-cover" />
+                    className="w-full h-full rounded-2xl object-cover" />
             </div>
         </div></>
      );
 }
+
  
 export default SecondaryCard;

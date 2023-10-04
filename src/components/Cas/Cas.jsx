@@ -35,7 +35,7 @@ const Carousel = () => {
         <img src={images[currentIndex].img} alt="Carousel Slide" className="hero-image" />
         <div className="absolute inset-0  justify-center items-center text-center text-white">
         <div className="hero-content">
-          <p className="hero-title text-center text-10xl mb-6 text-white">
+          <p className="hero-title text-center text-10xl mb-6 text-gray-50">
           {images[currentIndex].text}
         </p>
        <Link to="/sign-in" > <p className='bg-red-950 p-4 rounded-full'> SCHOOL PORTAL</p></Link>

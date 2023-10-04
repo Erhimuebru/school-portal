@@ -8,12 +8,14 @@ import Footer from './components/Footer/Footer';
 import ExamScoresPage from './components/ExamScorePage/ExamScorePage';
 import ReviewComponent from './components/ReviewComponent/ReviewComponent';
 
+
 function App() {
 
 
   return (
     <>
-{/* <Navbar/> */}
+  
+{/* <Navbar/>  */}
 <Routes>
               <Route path="/" element={<Home/>}/>
               <Route path="/sign-in" element={<Signin/>}/>
@@ -21,9 +23,10 @@ function App() {
               <Route path="/exam-scores" element={<ExamScoresPage/> }/>
               <Route path="/reviews" element={ <ReviewComponent/> }/>
 
-                
+               
           </Routes>
           <Footer/>
+  
     </>
   )
 }

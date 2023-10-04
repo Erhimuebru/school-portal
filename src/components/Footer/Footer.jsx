@@ -12,7 +12,7 @@ const Footer = () => {
               <h3 className="font-semibold ml-2 mb-4">Logo</h3>
               <div className='flex flex-row gap-2 '>
                     <MapPinIcon className="h-6 w-6 text-[gray]" opacity={0.4} />
-                    <p className="text-gray-500 text-1xl">Edu, Agbara, Ogun State</p>
+                    <p className="text-gray-500 text-1xl">, Lagos State</p>
                     </div>
                 {/* <SocialIcon url='https://wa.me/2349018471745'  fgColor='gray' bgColor='transparent'/>
                 <SocialIcon url='https://www.facebook.com/profile.php?id=100093726890134'  fgColor='gray' bgColor='transparent'/>

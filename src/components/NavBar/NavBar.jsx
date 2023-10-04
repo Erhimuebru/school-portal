@@ -69,7 +69,7 @@ function Navbar() {
           <div>
             <div className='sm:ml-20 lg:ml-20'>
               {/* <img src={Logo} alt="" /> */}
-              <h1>site logo</h1>
+              <h1>school logo</h1>
             </div></div>
           <div>
             <ul className="hidden sm:flex gap-6 space-x-4 mr-20">
@@ -120,6 +120,4 @@ function Navbar() {
 }
 
 export default Navbar;
-
-
 

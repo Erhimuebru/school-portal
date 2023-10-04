@@ -7,6 +7,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { PiMoneyBold} from 'react-icons/pi';
 import SubNav from '../../components/SubNav/SubNav';
 import ExamScoresPage from '../../components/ExamScorePage/ExamScorePage';
+import Header from '../../components/Header/Head';
 
 
 
@@ -102,7 +103,7 @@ const Dashboard = () => {
             {isMobileMenuOpen ? (
               <FaTimes className="w-6 h-6 mr-20" />
             ) : (
-              <FaBars className="w-6 h-6 lg:mr-6" />
+              <FaBars className="w-6 h-6 mt-5 lg:mr-6" />
             )}
           </button>
 
@@ -124,13 +125,11 @@ const Dashboard = () => {
             </div>
           )}
         </div>
-     
+        <Header/>
      <div>
+   
        <div className='flex flex-1 gap-24 sm:ml-10 ml-10 lg:ml-10'>
-         {/* <img src={Logo} alt="" /> */}
-         <h1>site logo</h1>
-       <li className='lg:hidden flex flex-1 gap-2'><BsPersonCircle className='w-6 h-6' /><p className="font-bold"> {user?.surname}</p></li>
-         
+      
        </div>
        </div>
        

@@ -25,7 +25,7 @@ const Header = () => {
              
             <div className="mt-4">
             <h1 className="text-3xl lg:text-2xl text-center font-semibold font-serif text-black">
-                 <span> {text}</span>
+                 <span className=" lg:text-2xl"> {text}</span>
                  <Cursor cursorColor="#F7AB0A" />
 
              </h1>

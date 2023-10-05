@@ -17,8 +17,8 @@ const ReviewDetailsCard = ({
 
 className=" relative w-96 pl-3 mb-1 rounded-md bg-white shadow">
 
-<div className="px-3 pb-4 ">
-    <div className='flex flex-row gap-16'>
+<div className="px- pb-4 ">
+    <div className='flex flex-row gap-28'>
         <div>
         <p className=" font-bold text-red-900 pt-4 pb-4">{name}</p>
         </div>

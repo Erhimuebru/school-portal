@@ -47,12 +47,12 @@ function Navbar() {
                 <FaTimes className="w-10 h-10 ml-72 mb-2 text-white" />
               </p>
               <ul className="space-y-2">
-                <Link to="/all-men" onClick={closeMobileMenu}><li className="flex gap-3 p-4 rounded hover:cursor-pointer hover:text-red-950 text-white"><HomeIcon className='w-6 h-6' />Home</li></Link>
-                <Link to="/all-women" onClick={closeMobileMenu}> <li className="flex p-4 gap-3 rounded hover:cursor-pointer hover:text-red-950 text-white"><BsPersonCircle className='w-6 h-6' />Student Portal</li></Link>
-                <Link to="/all-sneakers" onClick={closeMobileMenu}><li className="flex gap-3 rounded p-4 hover:cursor-pointer hover:text-red-950 text-white"><PiGraduationCap className='w-6 h-6' />Admission</li></Link>
-                <Link to="/all-beads" onClick={closeMobileMenu}> <li className="flex gap-3 rounded p-4 hover:cursor-pointer hover:text-red-950 text-white"><CalendarIcon className='w-6 h-6' />Events</li></Link>
-                <Link to="/all-perfume" onClick={closeMobileMenu}>  <li className="flex gap-3 rounded  p-4 hover:cursor-pointer hover:text-red-950 text-white"> <PiAddressBook className='w-6 h-6' />About</li></Link>
-                <Link to="/all-hand-bags" onClick={closeMobileMenu}> <li className="flex gap-3 p-4 hover:cursor-pointer hover:text-red-950 text-white"> <PhoneIcon className='w-6 h-6' />Contacts</li></Link>
+                <Link to="" onClick={closeMobileMenu}><li className="flex gap-3 p-4 rounded hover:cursor-pointer hover:text-red-950 text-white"><HomeIcon className='w-6 h-6' />Home</li></Link>
+                <Link to="" onClick={closeMobileMenu}> <li className="flex p-4 gap-3 rounded hover:cursor-pointer hover:text-red-950 text-white"><BsPersonCircle className='w-6 h-6' />Student Portal</li></Link>
+                <Link to="" onClick={closeMobileMenu}><li className="flex gap-3 rounded p-4 hover:cursor-pointer hover:text-red-950 text-white"><PiGraduationCap className='w-6 h-6' />Admission</li></Link>
+                <Link to="" onClick={closeMobileMenu}> <li className="flex gap-3 rounded p-4 hover:cursor-pointer hover:text-red-950 text-white"><CalendarIcon className='w-6 h-6' />Events</li></Link>
+                <Link to="" onClick={closeMobileMenu}>  <li className="flex gap-3 rounded  p-4 hover:cursor-pointer hover:text-red-950 text-white"> <PiAddressBook className='w-6 h-6' />About</li></Link>
+                <Link to="" onClick={closeMobileMenu}> <li className="flex gap-3 p-4 hover:cursor-pointer hover:text-red-950 text-white"> <PhoneIcon className='w-6 h-6' />Contacts</li></Link>
 
               </ul>
 
@@ -80,7 +80,7 @@ function Navbar() {
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-red-950 text-gray-800" to="/">
+                <Link className="hover:text-red-950 text-gray-800" to="/sign-in">
                   Student Portal
                 </Link>
               </li>

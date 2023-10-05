@@ -239,7 +239,7 @@ const Dashboard = () => {
 
 
 
-        <div className="bg-[green] ml-6 sm:ml-5 p-8 rounded shadow-md w-72 lg:w-96 sm:w-20">
+       <Link to="/reviews"> <div className="bg-[green] ml-6 sm:ml-5 p-8 rounded shadow-md w-72 lg:w-96 sm:w-20">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-extrabold">Parent Remark</h2>
             <div className="flex space-x-4">
@@ -251,8 +251,7 @@ const Dashboard = () => {
               </button>
             </div>
           </div>
-
-        </div>
+         </div></Link>
 
 
 

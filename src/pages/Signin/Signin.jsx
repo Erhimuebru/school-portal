@@ -115,7 +115,7 @@ const handleSubmit = async (e) =>
         try
         {
             // Send login request to the backend API
-            const response = await fetch('http://localhost:4000/users/login', {
+            const response = await fetch('https://school-portal-backend.onrender.com/users/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

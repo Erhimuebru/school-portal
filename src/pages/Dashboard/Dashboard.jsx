@@ -6,14 +6,15 @@ import { Link } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { PiMoneyBold} from 'react-icons/pi';
 import SubNav from '../../components/SubNav/SubNav';
-import ExamScoresPage from '../../components/ExamScorePage/ExamScorePage';
 import Header from '../../components/Header/Head';
-
+import { apiGet } from "../../utils/api/axios";
 
 
 const Dashboard = () => {
   const [examScores, setExamScores] = useState([]);
   const [testScores, setTestScores] = useState([]);
+  const [classSection, setClassSection] = useState("");
+  const [fullName, setFullName] = useState('');
   const [user, setUser] = useState(null);
   const [userInfoVisible, setUserInfoVisible] = useState(false);
   const [previousResultsVisible, setPreviousResultsVisible] = useState(false);
@@ -22,29 +23,26 @@ const Dashboard = () => {
   const id = localStorage.getItem('id');
 
 
+
   useEffect(() => {
-    fetch(`http://localhost:4000/users/${id}`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log('Fetched user data:', data);
+    const fetchStudentDetails = async () => {
+      try {
+        const { data } = await apiGet(`/users/${id}`);
         setUser(data);
+        console.log(data)
         setExamScores(data.examScores);
         setTestScores(data.testScores) 
-      })
-      .catch((error) => {
-        console.error('Error fetching user data:', error);
-      });
+        setFullName(data.fullName);
+        setClassSection(data.classSection)
+      } catch (error) {
+        setLoading(false); 
+        // Handle error
+      }
+    };
+
+    fetchStudentDetails();
   }, [id]);
+
   
 
   const toggleUserInfo = () => {
@@ -81,8 +79,10 @@ const Dashboard = () => {
     console.log('User Data:', user);
     const examScores = user?.examScores;
     const testScores = user?.testScores;
+    const fullName = user?.fullName;
+    const classSection = user?.classSection
     console.log('Exam Scores:', examScores);
-    navigate('/exam-scores', { state: { examScores: examScores, testScores:testScores } });
+    navigate('/exam-scores', { state: { examScores: examScores, testScores:testScores, fullName:fullName, classSection:classSection } });
   };
 
   return (

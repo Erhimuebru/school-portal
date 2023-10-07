@@ -85,7 +85,8 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { CircleLoader } from 'react-spinners'
+import { apiPost } from "../../utils/api/axios";
 const SignIn = () =>
 {
     const Navigate = useNavigate();
@@ -94,6 +95,7 @@ const SignIn = () =>
         password: '',
     });
     const [errorMessage, setErrorMessage] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) =>
     {
@@ -104,7 +106,9 @@ const SignIn = () =>
         }));
     };
 
-    const handleSubmit = async (e) =>
+
+
+const handleSubmit = async (e) =>
     {
         e.preventDefault();
 
@@ -149,6 +153,8 @@ const SignIn = () =>
         }
     };
 
+   
+
     return (
         <div className="login-main min-h-screen flex items-center justify-center">
         <div className="bg-white p-8 rounded shadow-md w-80">
@@ -180,11 +186,12 @@ const SignIn = () =>
               />
             </label>
             <button
-              type="submit"
-              className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-            >
-              Log In
-            </button>
+          type="submit"
+          className={`bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 ${loading ? 'cursor-not-allowed' : ''}`}
+          disabled={loading} 
+        >
+          {loading ? 'Loading...' : 'Log In'}
+        </button>
           </form>
         </div>
       </div>

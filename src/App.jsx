@@ -7,6 +7,7 @@ import Navbar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import ExamScoresPage from './components/ExamScorePage/ExamScorePage';
 import ReviewComponent from './components/ReviewComponent/ReviewComponent';
+import EditUserComponent from './components/EditUserComponent/EditUserComponent';
 
 
 function App() {
@@ -22,10 +23,11 @@ function App() {
               <Route path="/dashboard" element={ <Dashboard/> }/>
               <Route path="/exam-scores" element={<ExamScoresPage/> }/>
               <Route path="/reviews" element={ <ReviewComponent/> }/>
+              <Route path="/edits" element={<EditUserComponent/> }/>
 
-               
+            
           </Routes>
-          <Footer/>
+          {/* <Footer/> */}
   
     </>
   )

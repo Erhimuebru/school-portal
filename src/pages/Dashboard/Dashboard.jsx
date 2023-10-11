@@ -12,7 +12,9 @@ import { apiGet } from "../../utils/api/axios";
 
 const Dashboard = () => {
   const [examScores, setExamScores] = useState([]);
-  const [testScores, setTestScores] = useState([]);
+  const [firstCaScores, setFirstCaScores] = useState([]);
+  const [secondCaScores, setSecondCaScores] = useState([]);
+  const [totalStudent, setTotalStudent] = useState("");
   const [classSection, setClassSection] = useState("");
   const [fullName, setFullName] = useState('');
   const [user, setUser] = useState(null);
@@ -31,7 +33,9 @@ const Dashboard = () => {
         setUser(data);
         console.log(data)
         setExamScores(data.examScores);
-        setTestScores(data.testScores) 
+        setFirstCaScores(data.firstCaScores) 
+        setSecondCaScores(data.SecondCaScores) 
+        setTotalStudent(data.setTotalStudent) 
         setFullName(data.fullName);
         setClassSection(data.classSection)
       } catch (error) {
@@ -78,11 +82,14 @@ const Dashboard = () => {
   const handleExamScoresClick = () => {
     console.log('User Data:', user);
     const examScores = user?.examScores;
-    const testScores = user?.testScores;
+    const firstCaScores = user?.firstCaScores;
+    const  SecondCaScores= user?.SecondCaScores;
     const fullName = user?.fullName;
+    const totalStudent = user?. totalStudent;
+   
     const classSection = user?.classSection
     console.log('Exam Scores:', examScores);
-    navigate('/exam-scores', { state: { examScores: examScores, testScores:testScores, fullName:fullName, classSection:classSection } });
+    navigate('/exam-scores', { state: { examScores: examScores,  totalStudent:totalStudent,   SecondCaScores:  SecondCaScores, firstCaScores:firstCaScores, fullName:fullName, classSection:classSection } });
   };
 
   return (
@@ -145,6 +152,11 @@ const Dashboard = () => {
    </div>
     </div>
     
+
+    
+
+
+
     
     <div className="min-h-screen mt-12 pt-10 pb-12 flex items-center gap-10 justify-center bg-gray-100">
       <div className="grid lg:grid-cols-2 gap-8 w-full sm:w-11/12 md:w-3/4 lg:w-3/5">
@@ -272,6 +284,21 @@ const Dashboard = () => {
         </div>
 
 
+
+{/* 
+        <Link to="/edits"> <div className="bg-[green] ml-6 sm:ml-5 p-8 rounded shadow-md w-72 lg:w-96 sm:w-20">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="font-extrabold">Edit Result</h2>
+            <div className="flex space-x-4">
+              <button
+                className="text-gray-600 hover:text-gray-800"
+
+              >
+                <BsPeople className='w-8 h-8' />
+              </button>
+            </div>
+          </div>
+         </div></Link> */}
 
 
 

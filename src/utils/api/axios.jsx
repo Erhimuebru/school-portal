@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const baseUrl = "https://school-portal-backend.onrender.com";
-// const baseUrl = "http://localhost:4000";
+// const baseUrl = "https://school-portal-backend.onrender.com";
+const baseUrl = "http://localhost:4000";
 
 
 

@@ -3,7 +3,7 @@ const Principle = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 sm:ml-2 gap-4 mt-20 mb-20 ml-20 mr-16 bg-white">
         <div className="w-full">
             <img
-                src="https://www.nasdec.com.ng/static/media/Nasdec.cc1b25ddb15ae75d6ada.png"
+                src="https://scontent.flos3-1.fna.fbcdn.net/v/t39.30808-6/323554167_522608096508016_3571517215831462969_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=a2f6c7&_nc_eui2=AeH0Ss82DlnydqDkIWPdTr5Wcw9tn-1T2-pzD22f7VPb6g_BsGs5kallhI7cSpZ_kaMb9g-zsfmjM2GDlYxCIH07&_nc_ohc=B-xnEHOlZKcAX-anKqv&_nc_zt=23&_nc_ht=scontent.flos3-1.fna&oh=00_AfCBPsW9jeria5xmpnJjh8iW2a12pGlhpC_PQ967N4i2nA&oe=652C1D9B"
                 alt=""
                 className="w-full h-full rounded-2xl object-cover" />
         </div>

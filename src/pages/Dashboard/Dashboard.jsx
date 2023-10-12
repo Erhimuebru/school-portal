@@ -17,6 +17,12 @@ const Dashboard = () => {
   const [totalStudent, setTotalStudent] = useState("");
   const [classSection, setClassSection] = useState("");
   const [fullName, setFullName] = useState('');
+  const [age, setAge] = useState("");
+  const [timeSchoolOpen, setTimeSchoolOpen] = useState("");
+  const [department, setDepartment] = useState("");
+  const [timePresent, setTimePresent] = useState("");
+  const [timeAbsent, setTimeAbsent] = useState("");
+  const [gender, setGender] = useState("");
   const [user, setUser] = useState(null);
   const [userInfoVisible, setUserInfoVisible] = useState(false);
   const [previousResultsVisible, setPreviousResultsVisible] = useState(false);
@@ -85,11 +91,18 @@ const Dashboard = () => {
     const firstCaScores = user?.firstCaScores;
     const  SecondCaScores= user?.SecondCaScores;
     const fullName = user?.fullName;
-    const totalStudent = user?. totalStudent;
-   
+    const totalStudent = user?.totalStudent;
+    const age = user?.age
+    const house= user?.house
+    const timeAbsent = user?.timeAbsent
+    const timePresent =user?.timePresent
+    const gender = user?.gender
+    const timeSchoolOpen =user?.timeSchoolOpen
+    const department = user?.department
+    const term = user?.term
     const classSection = user?.classSection
     console.log('Exam Scores:', examScores);
-    navigate('/exam-scores', { state: { examScores: examScores,  totalStudent:totalStudent,   SecondCaScores:  SecondCaScores, firstCaScores:firstCaScores, fullName:fullName, classSection:classSection } });
+    navigate('/exam-scores', { state: {age:age, term:term, gender:gender, timeSchoolOpen:timeSchoolOpen, department:department,  timePresent:timePresent , timeAbsent :timeAbsent, house:house, examScores: examScores,  totalStudent:totalStudent,   SecondCaScores:  SecondCaScores, firstCaScores:firstCaScores, fullName:fullName, classSection:classSection } });
   };
 
   return (

@@ -58,7 +58,19 @@ const ExamScoresPage = () => {
     timeSchoolOpen,
     department,
     totalStudent,
-    term
+    term,
+    punctuality,
+    neatness,
+    health,
+    emotionalStabilty,
+    honesty,
+    sport,
+    writing,
+    greeting,
+    atitude,
+    socialSkills,
+    leaderShip,
+    practical,
   } = state;
 
   const combinedScores = examScores.map((examScore, index) => {
@@ -182,6 +194,42 @@ const ExamScoresPage = () => {
     ))}
   </tbody>
 </table>
+
+
+
+
+
+<div className='mt-2 uppercase font-bold'>
+  <p className='bg-red-900 text-center p-3 mb-6 text-white  font-bold uppercase' >APPRAISAL</p>
+
+<div className='rounded-sm container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-x-28 mb-4'>
+ 
+          <div>  
+                    <p className='pb-3'>punctuality: {punctuality}</p>
+                    <p  className='pb-3'>neatness: {neatness}</p>
+                    <p className='pb-3'>health: {health}</p>
+                    <p className='pb-3'>emotional Stabilty: {emotionalStabilty}</p>
+          </div>
+
+
+          <div> 
+                    <p className='pb-3'>honesty: {honesty}</p>
+                    <p className='pb-3'>sport: {sport}</p>
+                    <p className='pb-3'>writing: {writing}</p>
+                    <p className='pb-3'>greeting: {greeting}</p>
+          </div>
+          
+          <div>
+                 
+                    <p className='pb-3'>social Skills: {socialSkills}</p>
+                    <p className='pb-3'>leaderShip skills: {leaderShip}</p>
+                    <p className='pb-3'>practicals: {practical}</p>
+                    <p className='pb-3 whitespace-nowrap'>ATTITUDE TO ACCADEMICS: {atitude}</p>
+          </div>
+
+
+          </div>
+</div>
 
 
 <div className='mt-2'>

@@ -101,8 +101,33 @@ const Dashboard = () => {
     const department = user?.department
     const term = user?.term
     const classSection = user?.classSection
+    const punctuality =user?.punctuality
+    const neatness = user?.neatness
+    const health = user?.health
+    const emotionalStabilty = user?.emotionalStabilty
+    const honesty = user?.honesty
+    const sport =user?.sport
+    const writing = user?.writing
+    const greeting = user?.greeting
+    const atitude =user?.atitude
+    const socialSkills =user?.socialSkills
+    const leaderShip = user?.leaderShip
+    const  practical = user?.practical
     console.log('Exam Scores:', examScores);
-    navigate('/exam-scores', { state: {age:age, term:term, gender:gender, timeSchoolOpen:timeSchoolOpen, department:department,  timePresent:timePresent , timeAbsent :timeAbsent, house:house, examScores: examScores,  totalStudent:totalStudent,   SecondCaScores:  SecondCaScores, firstCaScores:firstCaScores, fullName:fullName, classSection:classSection } });
+    navigate('/exam-scores', { state: {age:age, term:term, 
+      punctuality:punctuality,
+      neatness:neatness,
+      health:health,
+      emotionalStabilty:emotionalStabilty,
+      honesty:honesty,
+      sport:sport,
+      writing:writing,
+      greeting:greeting,
+      atitude:atitude,
+      socialSkills:socialSkills,
+      leaderShip:leaderShip,
+      practical:practical,
+      gender:gender, timeSchoolOpen:timeSchoolOpen, department:department,  timePresent:timePresent , timeAbsent :timeAbsent, house:house, examScores: examScores,  totalStudent:totalStudent,   SecondCaScores:  SecondCaScores, firstCaScores:firstCaScores, fullName:fullName, classSection:classSection } });
   };
 
   return (

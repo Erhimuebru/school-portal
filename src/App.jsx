@@ -8,6 +8,8 @@ import Footer from './components/Footer/Footer';
 import ExamScoresPage from './components/ExamScorePage/ExamScorePage';
 import ReviewComponent from './components/ReviewComponent/ReviewComponent';
 import EditUserComponent from './components/EditUserComponent/EditUserComponent';
+import UserListComponent from './components/UserListComponent/UserListComponent';
+import AddStudent from './components/AddStudent/AddStudent';
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
               <Route path="/exam-scores" element={<ExamScoresPage/> }/>
               <Route path="/reviews" element={ <ReviewComponent/> }/>
               <Route path="/edits" element={<EditUserComponent/> }/>
+              <Route path="/class" element={<UserListComponent/> }/>
+              <Route path="/add-student" element={<AddStudent/> }/>
 
             
           </Routes>

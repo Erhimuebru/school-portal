@@ -8,6 +8,7 @@ import { PiMoneyBold} from 'react-icons/pi';
 import SubNav from '../../components/SubNav/SubNav';
 import Header from '../../components/Header/Head';
 import { apiGet } from "../../utils/api/axios";
+import Footer from '../../components/Footer/Footer';
 
 
 const Dashboard = () => {
@@ -222,13 +223,25 @@ const Dashboard = () => {
                 <span className="font-bold">Full Name:</span> {user?.fullName}
               </p>
               <p>
-                <span className="font-bold">Phone Number:</span> {user?.phoneNumber}
+                {/* <span className="font-bold">Phone Number:</span> {user?.phoneNumber} */}
               </p>
               <p>
                 <span className="font-bold">Class Section:</span> {user?.classSection}
               </p>
               <p>
                 <span className="font-bold">Payment Status:</span> {user?.paymentStatus}
+              </p>
+
+              <p>
+                <span className="font-bold">House:</span> {user?.house}
+              </p>
+
+              <p>
+                <span className="font-bold">Age:</span> {user?.age}
+              </p>
+
+              <p>
+                <span className="font-bold">Gender:</span> {user?.gender}
               </p>
             </div>
           )}
@@ -344,7 +357,10 @@ const Dashboard = () => {
 
 
       </div>
-    </div></>
+    </div>
+    
+    <Footer/>
+    </>
   );
 };
 

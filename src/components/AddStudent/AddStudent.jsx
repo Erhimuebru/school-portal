@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from 'react';
 
 const AddStudent = () => {
-  const [subjectScores, setSubjectScores] = useState([{ subject: '', firstCA: '', secondCA: '', exam: '' }]);
+  // const [subjectScores, setSubjectScores] = useState([{ subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' }]);
 
+  const [subjectsConfirmed, setSubjectsConfirmed] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [subjectScores, setSubjectScores] = useState([
+    { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+    { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+    { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+    { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+    { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+    { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+    { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+    { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+    { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+    { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+    { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+    { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+  ]);
   const handleSubjectChange = (index, newSubject) => {
     const updatedScores = [...subjectScores];
     updatedScores[index].subject = newSubject;
     setSubjectScores(updatedScores);
   };
-//  useEffect(() => {
-//     const lastSubject = subjectScores[subjectScores.length - 1];
-//     if (lastSubject.subject && !lastSubject.firstCA && !lastSubject.secondCA && !lastSubject.exam) {
-//       setSubjectScores([...subjectScores, { subject: '', firstCA: '', secondCA: '', exam: '' }]);
-//     }
-//   }, [subjectScores]);
-
-//   const handleSubjectChange = (index, newSubject) => {
-//     const updatedScores = [...subjectScores];
-//     updatedScores[index].subject = newSubject;
-//     setSubjectScores(updatedScores);
-//   };
-
-// 
 
   const handleFCAChange = (index, newScore) => {
     const updatedScores = [...subjectScores];
@@ -41,29 +44,84 @@ const AddStudent = () => {
     setSubjectScores(updatedScores);
   };
 
-  const addSubject = (e) => {
-    e.preventDefault();
-  setFormData((prevData) => ({
-    ...prevData,
-    subjectScores: [...prevData.subjectScores, ...subjectScores],
-  }));
-
-    setSubjectScores([...subjectScores, { subject: '', firstCA: '', secondCA: '', exam: '' }]);
-      // setSubjectScores([{ subject: '', firstCA: '', secondCA: '', exam: '' }]);
-      // Logging the updated state to the console
-      console.log('Updated Subject Scores:', subjectScores);
-  };
-  
-
-  const confirmSubject = (e) => {
-    e.preventDefault();
-
-    // setSubjectScores([...subjectScores, { subject: '', firstCA: '', secondCA: '', exam: '' }]);
-      // Logging the updated state to the console
-      console.log('Updated Subject Scores:', subjectScores);
+  const handleClassTotalChange = (index, newScore) => {
+    const updatedScores = [...subjectScores];
+    updatedScores[index].classTotal = newScore;
+    setSubjectScores(updatedScores);
   };
 
  
+  // const addSubject = (e) => {
+  //   e.preventDefault();
+  // setFormData((prevData) => ({
+  //   ...prevData,
+  //   subjectScores: [...prevData.subjectScores, ...subjectScores],
+  // }));
+
+  //   setSubjectScores([...subjectScores, { subject: '', firstCA: '', secondCA: '', exam: '', classTotal:'' }]);
+  //     // setSubjectScores([{ subject: '', firstCA: '', secondCA: '', exam: '' }]);
+  //     // Logging the updated state to the console
+  //     console.log('Updated Subject Scores:', subjectScores);
+  // };
+  
+
+  // const confirmSubject = (e) => {
+  //   e.preventDefault();
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     subjectScores: [...prevData.subjectScores, ...subjectScores],
+  //   }));
+  //   // setSubjectScores([...subjectScores, { subject: '', firstCA: '', secondCA: '', exam: '' }]);
+  //     // Logging the updated state to the console
+  //     console.log('Updated Subject Scores:', subjectScores);
+  // };
+
+
+  // const confirmSubject = (e) => {
+  //   e.preventDefault();
+  
+  //   // Check if all subjects are selected
+  //   if (subjectScores.some((score) => score.subject === '')) {
+  //     console.log('Please select a subject for all entries.');
+  //     return;
+  //   }
+
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     subjectScores: [...prevData.subjectScores, ...subjectScores],
+  //   }));
+
+  //   console.log('Updated Subject Scores:', subjectScores);
+  // };
+  
+ 
+
+  const confirmSubject = (e) => {
+    e.preventDefault();
+  
+    // Check if subjects have already been confirmed
+    if (subjectsConfirmed) {
+      setError('Subjects have already been confirmed.');
+      setSuccess(null);
+      return;
+    }
+  
+    // Check if all subjects are selected
+    if (subjectScores.some((score) => score.subject === '')) {
+      setError('Please select a subject for all entries.');
+      setSuccess(null);
+      return;
+    }
+  
+    // Update subjectsConfirmed to prevent further additions
+    setSubjectsConfirmed(true);
+    setSuccess('Subjects confirmed successfully!');
+    setError(null);
+    console.log('Subjects confirmed:', subjectScores);
+  };
+  
+  
+  
 const handleRemoveSubject = (e,index) => {
   e.preventDefault();
   const updatedSubjectScores = [...subjectScores];
@@ -104,7 +162,7 @@ const handleRemoveSubject = (e,index) => {
     socialSkills: '',
     leaderShip: '',
     practical: '',
-    subjectScores:[],
+    subjectScores:subjectScores,
     subject: '',
      firstCA: '',
       secondCA: '', 
@@ -163,13 +221,26 @@ const handleRemoveSubject = (e,index) => {
           socialSkills: '',
           leaderShip: '',
           practical: '',
-          subjectScores: [],
+          subjectScores:subjectScores,
           firstCA: '',
           secondCA: '', 
           exam: ''
         });
 
-        setSubjectScores([{ subject: '', firstCA: '', secondCA: '', exam: '' }])
+        setSubjectScores([
+          { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+          { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+          { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+          { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+          { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+          { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+          { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+          { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+          { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+          { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+          { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+          { subject: '', firstCA: '', secondCA: '', exam: '', classTotal: '' },
+        ]);
          
         console.log('User gone successfully', formData)
         // setFormData();
@@ -233,47 +304,57 @@ const handleRemoveSubject = (e,index) => {
         </div>
 
         {/* Class Section */}
-        <div>
-          <label htmlFor="classSection" className="block font-semibold text-gray-800">Class Section</label>
-          <input
-            type="text"
+       
+      <div className="mb-4">
+          <label htmlFor="classSection" className="block text-sm font-medium text-gray-600">
+          Class
+          </label>
+          <select
             id="classSection"
+            name="classSection"
             className="mt-1 p-2 border rounded w-full"
             value={formData.classSection}
-            onChange={(e) => setFormData({ ...formData, classSection: e.target.value })}
+            onChange={handleInputChange}
             required
-          />
+          >
+            <option value="">Select Class</option>
+            <option value="J.S.S.1">J.S.S.1</option>
+            <option value="J.S.S.2">J.S.S.2</option>
+            <option value="J.S.S.3">J.S.S.3</option>
+            <option value="S.S.S.1">S.S.S.1</option>
+            <option value="S.S.S.2">S.S.S.2</option>
+            <option value="S.S.S.3">S.S.S.3</option>
+            
+          </select>
         </div>
 
 
           {/* Department */}
-          <div>
-          <label htmlFor="department" className="block font-semibold text-gray-800">Department</label>
-          <input
-            type="text"
+        
+      
+        <div className="mb-4">
+          <label htmlFor="department" className="block text-sm font-medium text-gray-600">
+          Department
+          </label>
+          <select
             id="department"
+            name="department"
             className="mt-1 p-2 border rounded w-full"
             value={formData.department}
-            onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+            onChange={handleInputChange}
             required
-          />
+          >
+            <option value="">Select Department</option>
+            <option value="Art">Art</option>
+            <option value="Commercial">Commercial</option>
+            <option value="science">science</option>
+            
+          </select>
         </div>
 
 
         {/* Payment Status */}
-        {/* <div>
-          <label htmlFor="paymentStatus" className="block font-semibold text-gray-800">Payment Status</label>
-          <input
-            type="text"
-            id="paymentStatus"
-            className="mt-1 p-2 border rounded w-full"
-            value={formData.paymentStatus}
-            onChange={(e) => setFormData({ ...formData, paymentStatus: e.target.value })}
-            required
-          />
-        </div> */}
-
-
+      
          <div className="mb-4">
           <label htmlFor="paymentStatus" className="block text-sm font-medium text-gray-600">
             Payment Status
@@ -294,11 +375,6 @@ const handleRemoveSubject = (e,index) => {
         </div>
 
 
-
-
-
-
-
         {/* Age */}
         <div>
           <label htmlFor="age" className="block font-semibold text-gray-800">Age</label>
@@ -315,16 +391,26 @@ const handleRemoveSubject = (e,index) => {
 
 
          {/* House */}
-         <div>
-          <label htmlFor="house" className="block font-semibold text-gray-800">House</label>
-          <input
-            type="text"
+        
+
+        <div className="mb-4">
+          <label htmlFor="house" className="block text-sm font-medium text-gray-600">
+          HOUSE
+          </label>
+          <select
             id="house"
+            name="house"
             className="mt-1 p-2 border rounded w-full"
             value={formData.house}
-            onChange={(e) => setFormData({ ...formData, house: e.target.value })}
+            onChange={handleInputChange}
             required
-          />
+          >
+            <option value="">Select House</option>
+            <option value="Jasmin">Jasmin</option>
+            <option value="Mauve">Mauve</option>
+            <option value="Lavenda">Lavenda</option>
+            <option value="Marrigold">Marrigold</option>  
+          </select>
         </div>
 
         {/* Time Absent */}
@@ -368,19 +454,7 @@ const handleRemoveSubject = (e,index) => {
         </div>
 
         {/* Gender */}
-        {/* <div>
-          <label htmlFor="gender" className="block font-semibold text-gray-800">Gender</label>
-          <input
-            type="text"
-            id="gender"
-            className="mt-1 p-2 border rounded w-full"
-            value={formData.gender}
-            onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-            required
-          />
-        </div> */}
-
-
+       
          <div className="mb-4">
           <label htmlFor="gender" className="block text-sm font-medium text-gray-600">
             Gender
@@ -396,7 +470,6 @@ const handleRemoveSubject = (e,index) => {
             <option value="">Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
-            {/* Add more options as needed */}
           </select>
         </div>
 
@@ -404,19 +477,7 @@ const handleRemoveSubject = (e,index) => {
 
 
         {/* Term */}
-        {/* <div>
-          <label htmlFor="term" className="block font-semibold text-gray-800">Term</label>
-          <input
-            type="text"
-            id="term"
-            className="mt-1 p-2 border rounded w-full"
-            value={formData.term}
-            onChange={(e) => setFormData({ ...formData, term: e.target.value })}
-            required
-          />
-        </div> */}
-
-
+    
          <div className="mb-4">
           <label htmlFor="term" className="block text-sm font-medium text-gray-600">
             Term
@@ -433,15 +494,8 @@ const handleRemoveSubject = (e,index) => {
             <option value="First">First</option>
             <option value="Second">Second</option>
             <option value="Third">Third</option>
-            {/* Add more options as needed */}
           </select>
         </div>
-
-
-
-
-
-
 
         {/* Total Student */}
         <div>
@@ -468,10 +522,22 @@ const handleRemoveSubject = (e,index) => {
             className="border border-gray-400 p-2 rounded mr-2"
           >
             <option value="">Select Subject</option>
-            <option value="Mathematics">Mathematics</option>
-            <option value="English">English</option>
-            <option value="Marketing">Marketing</option>
-            <option value="Computer">Computer</option>
+            <option value="MATHEMATICS">MATHEMATICS</option>
+            <option value="ENGLISH LANGUAGE">ENGLISH LANGUAGE</option>
+            <option value="MARKETING">MARKETING</option>
+            <option value="COMPUTER STUDIES">COMPUTER STUDIES</option>
+            <option value="FINANCIAL ACCOUNTING">FINANCIAL ACCOUNTING</option>
+            <option value="ECONOMICS">ECONOMICS</option>
+            <option value="BIOLOGY">BIOLOGY</option>
+            <option value="COMMERCE">COMMERCE</option>
+            <option value="AGRICULTURE SCIENCE">AGRICULTURE SCIENCE</option>
+            <option value="ECONOMICS">ECONOMICS</option>
+            <option value="FOOD & NUTRITION">FOOD & NUTRITION</option>
+            <option value="CIVIC EDUCATION">CIVIC EDUCATION</option>
+            <option value="DATA PROCESSING">DATA PROCESSING</option>
+            <option value="YORUBA">YORUBA</option>
+            
+          
             {/* Add more subject options */}
           </select>
           <input
@@ -495,15 +561,32 @@ const handleRemoveSubject = (e,index) => {
             onChange={(e) => handleExamChange(index, e.target.value)}
             className="border border-gray-400 p-2 rounded mr-2"
           />
+
+
+            <input
+            type="number"
+            placeholder="Class Total"
+            value={subjectScore.classTotal}
+            onChange={(e) => handleClassTotalChange(index, e.target.value)}
+            className="border border-gray-400 p-2 rounded mr-2"
+          />  
         </div>
       ))}
+
+
+            {/* Display Error Message */}
+            {error && <div className="text-red-500">{error}</div>}
+
+{/* Display Success Message */}
+{success && <div className="text-green-500">{success}</div>}
+
       <button onClick={confirmSubject} className="bg-blue-500 text-white py-2 mb-6 px-4 rounded mr-2">
         Confirm Subjects
       </button>
-      <button onClick={ addSubject} className="bg-[green] text-white py-2 px-4 rounded mr-2">
+      {/* <button onClick={ addSubject} className="bg-[green] text-white py-2 px-4 rounded mr-2">
         Add Subjects
-      </button>
-     
+      </button> */}
+{/*      
      <button
   onClick={handleRemoveSubject}
   disabled={subjectScores.length <= 2}
@@ -514,7 +597,7 @@ const handleRemoveSubject = (e,index) => {
   }`}
 >
   Remove Subject
-</button>
+</button> */}
     </div>
 
 

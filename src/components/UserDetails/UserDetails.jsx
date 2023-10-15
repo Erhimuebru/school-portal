@@ -1,95 +1,13 @@
-// import React, { useState, useEffect } from 'react';
-// import { Link } from 'react-router-dom'; // Import useHistory from react-router-dom
-// import axios from 'axios';
-
-// const UserDetails = ({ userId }) => {
-//   const [userData, setUserData] = useState({});
-// //   const history = useHistory(); // Get the history object
-
-//   useEffect(() => {
-//     const fetchUserData = async () => {
-//       try {
-//         // const response = await axios.get(`http://localhost:4000/users/${userId}`);
-//         const response = await axios.get(`http://localhost:4000/users/6529c5c1b23dff971853c791`);
-      
-//         setUserData(response.data);
-//         console.log(response.data)
-//         // Navigate to a new page after fetching data (for example, the home page)
-//         // history.push('/'); // Change the path to the desired page
-//       } catch (error) {
-//         console.error('Error fetching user data:', error);
-//       }
-//     };
-
-//     fetchUserData();
-//   }, [userId]); // Add history to the dependency array
-
-//   return (
-//     <div>
-//       <h2>User Details</h2>
-//       <p>Name: {userData.name}</p>
-//       {/* Display other user details */}
-//       <Link to={`/users/edit/${userId}`}>
-//         <button>Edit</button>
-//       </Link>
-//     </div>
-//   );
-// };
-
-// export default UserDetails;
-
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const UserDetails = () => {
-  const { userId } = useParams(); // Get the userId from the URL parameter
+  const UserDetails = () => {
+
+  const { userId } = useParams(); 
   const [user, setUser] = useState({});
- 
-  const [subjectScores, setSubjectScores] = useState([]);
-
-
-
-//   const [subjectScores, setSubjectScores] = useState([{ subject: '', firstCA: '', secondCA: '', exam: '' }]);
-
-  const handleSubjectChange = (index, newSubject) => {
-    const updatedScores = [...subjectScores];
-    updatedScores[index].subject = newSubject;
-    setSubjectScores(updatedScores);
-  };
-//  useEffect(() => {
-//     const lastSubject = subjectScores[subjectScores.length - 1];
-//     if (lastSubject.subject && !lastSubject.firstCA && !lastSubject.secondCA && !lastSubject.exam) {
-//       setSubjectScores([...subjectScores, { subject: '', firstCA: '', secondCA: '', exam: '' }]);
-//     }
-//   }, [subjectScores]);
-
-//   const handleSubjectChange = (index, newSubject) => {
-//     const updatedScores = [...subjectScores];
-//     updatedScores[index].subject = newSubject;
-//     setSubjectScores(updatedScores);
-//   };
-
-// 
-
-  const handleFCAChange = (index, newScore) => {
-    const updatedScores = [...subjectScores];
-    updatedScores[index].firstCA = newScore;
-    setSubjectScores(updatedScores);
-  };
-
-  const handleSCAChange = (index, newScore) => {
-    const updatedScores = [...subjectScores];
-    updatedScores[index].secondCA = newScore;
-    setSubjectScores(updatedScores);
-  };
-
-  const handleExamChange = (index, newScore) => {
-    const updatedScores = [...subjectScores];
-    updatedScores[index].exam = newScore;
-    setSubjectScores(updatedScores);
-  };
+  
+  const [subjectScores, setSubjectScores] = useState([{ subject:subject, firstCA:firstCA, secondCA:secondCA, exam:exam }]);
 
   const addSubject = (e) => {
     e.preventDefault();
@@ -99,29 +17,26 @@ const UserDetails = () => {
   }));
 
     setSubjectScores([...subjectScores, { subject: '', firstCA: '', secondCA: '', exam: '' }]);
-      // setSubjectScores([{ subject: '', firstCA: '', secondCA: '', exam: '' }]);
-      // Logging the updated state to the console
       console.log('Updated Subject Scores:', subjectScores);
   };
   
 
   const confirmSubject = (e) => {
     e.preventDefault();
-
-    // setSubjectScores([...subjectScores, { subject: '', firstCA: '', secondCA: '', exam: '' }]);
-      // Logging the updated state to the console
       console.log('Updated Subject Scores:', subjectScores);
   };
 
  
 const handleRemoveSubject = (e,index) => {
   e.preventDefault();
+  setSubjectScores((prevData) => ({
+    ...prevData,
+    subjectScores: [...prevData.subjectScores, ...subjectScores],
+  }));
   const updatedSubjectScores = [...subjectScores];
   updatedSubjectScores.splice(index, 1);
   setSubjectScores(updatedSubjectScores);
 };
-
-
 
 
   const [formData, setFormData] = useState({
@@ -155,13 +70,55 @@ const handleRemoveSubject = (e,index) => {
     socialSkills: '',
     leaderShip: '',
     practical: '',
-    subjectScores:subjectScores
+    subjectScores:subjectScores,
   });
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  
+
+
+// const handleInputChanges = (index, name, value) => {
+//   const updatedSubjectScores = [...subjectScores];
+//   updatedSubjectScores[index] = {
+//     ...updatedSubjectScores[index],
+//     [name]: value,
+//   };
+//   setSubjectScores(updatedSubjectScores);
+// };
+
+
+// const handleInputChanges = (index, name, value) => {
+//   // Create a copy of the current state
+//   const updatedSubjectScores = [...subjectScores];
+  
+//   // Create a copy of the specific object within the array that needs to be updated
+//   const updatedSubject = { ...updatedSubjectScores[index] };
+
+//   // Update the specific field in the copied object
+//   updatedSubject[name] = value;
+
+//   // Update the specific object within the array
+//   updatedSubjectScores[index] = updatedSubject;
+
+//   // Update the state with the modified array
+//   setSubjectScores(updatedSubjectScores);
+// };
+
+  
+const handleInputChanges = (index, name, value) => {
+  const updatedSubjectScores = [...subjectScores];
+  updatedSubjectScores[index] = {
+    ...updatedSubjectScores[index],
+    [name]: value,
+  };
+  setSubjectScores(updatedSubjectScores);
+};
+
+
 
 
   const flattenedArray = subjectScores.flatMap(innerArray => innerArray);
@@ -171,7 +128,9 @@ const handleRemoveSubject = (e,index) => {
     axios.get(`http://localhost:4000/users/652a6fbcdb3e700329547eb3`)
       .then((response) => {
         setUser(response.data);
+        // setSubjectScores(response.data.subjectScores);
         setSubjectScores(response.data.subjectScores);
+        setFormData(prevData => ({ ...prevData, subjectScores: response.data.subjectScores }));
         console.log(response.data)
         console.log("good scores",response.data.subjectScores)
        
@@ -185,7 +144,10 @@ const handleRemoveSubject = (e,index) => {
 
   const handleEdit = () => {
     // Send a PUT request to update the user's data
-    axios.put(`http://localhost:4000/users/6529c5c1b23dff971853c791`, formData)
+    axios.put(`http://localhost:4000/users/652a6fbcdb3e700329547eb3`, {
+      ...formData,
+      subjectScores: subjectScores,
+    })
       .then((response) => {
         console.log(response.data)
         // Handle success, e.g., show a success message or redirect to the user's profile
@@ -273,10 +235,6 @@ const handleRemoveSubject = (e,index) => {
             {/* Add more options as needed */}
           </select>
         </div>
-
-
-
-
 
 
 
@@ -393,11 +351,6 @@ const handleRemoveSubject = (e,index) => {
         </div>
 
 
-
-
-
-
-
         {/* Total Student */}
         <div>
           <label htmlFor="totalStudent" className="block font-semibold text-gray-800">Total Student</label>
@@ -416,11 +369,13 @@ const handleRemoveSubject = (e,index) => {
 
 <div className="w-full p-4 bg-white rounded shadow-lg mt-8">
       <h1 className="text-2xl font-bold mb-4">Performance</h1>
-      {flattenedArray.map((subjectScore, index) => (
+      {flattenedArray?.map((subjectScore, index) => (
   <div key={index} className="mb-10">
     <select
+     id="subject"
+     name="subject"
       value={subjectScore.subject}
-      onChange={(e) => handleSubjectChange(index, e.target.value)}
+   onChange={(e) => handleInputChanges(index, 'subject', e.target.value)}
       className="border border-gray-400 p-2 rounded mr-2"
     >
       <option value="">Select Subject</option>
@@ -431,25 +386,31 @@ const handleRemoveSubject = (e,index) => {
 
     <input
       type="number"
+      id="firstCA"
+      name="firstCA"
       placeholder="First CA"
       value={subjectScore.firstCA}  
-      onChange={(e) => handleFCAChange(index, e.target.value)}
+      onChange={(e) => handleInputChanges(index, 'firstCA', e.target.value)}
       className="border border-gray-400 p-2 rounded mr-2"
     />
 
     <input
       type="number"
+      id="secondCA"
+      name="secondCA"
       placeholder="Second CA"
       value={subjectScore.secondCA}  
-      onChange={(e) => handleSCAChange(index, e.target.value)}
+      onChange={(e) => handleInputChanges(index, 'secondCA', e.target.value)}
       className="border border-gray-400 p-2 rounded mr-2"
     />
 
     <input
       type="number"
+      id="exam"
+      name="exam"
       placeholder="Exam Score"
       value={subjectScore.exam} 
-      onChange={(e) => handleExamChange(index, e.target.value)}
+      onChange={(e) => handleInputChanges(index, 'exam', e.target.value)}
       className="border border-gray-400 p-2 rounded mr-2"
     />
   </div>
@@ -753,15 +714,10 @@ const handleRemoveSubject = (e,index) => {
 
         {/* Submit Button */}
         <div>
-          {/* <button
-            type="submit" onClick={handleSubmit}
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
-          >
-            Add Student
-          </button> */}
+       
 
 </div>
-        {/* Add more input fields for other user properties */}
+      
         <button type="submit" className="bg-[green] text-white py-2 px-4 rounded mr-2">Save Changes</button>
       
         

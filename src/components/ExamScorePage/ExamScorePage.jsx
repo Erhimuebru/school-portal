@@ -80,7 +80,7 @@ const ExamScoresPage = () => {
     const [secondtestSubject, secondtestValue] = SecondCaScores[index][0].split(':');
     const totalScore = parseInt(examValue, 10) + parseInt(secondtestValue, 10) + parseInt(testValue);
     const totalMarks = examValue + testValue + secondtestValue;
-   
+   console.log("gooooood",subjectScores)
     // console.log(`Total Subjects: ${totalSubjects}`);
     
     const { grade, remark } = calculateGrade(totalScore);
@@ -111,16 +111,7 @@ const ExamScoresPage = () => {
   };
 
 
-  // const totalPossibleMarks = combinedScores.length * 100;
-
-  // Calculate percentage
-  // const percentage = (totalScores / totalPossibleMarks) * 100;
-  // const { grade, remark } = calculateGrade(percentage);
-
-
-
-
-
+ 
   const totalScore = subjectScores
   .flatMap(nestedArray => nestedArray)
   .map(subjectScore => {
@@ -128,22 +119,30 @@ const ExamScoresPage = () => {
     return totalScore;
   });
 
-const classAverage = totalScore.length > 0 ? totalScore.reduce((acc, score) => acc + score, 0) / totalScore.length : 0;
+
 const totalScoresSum = totalScore.reduce((acc, score) => acc + score, 0);
 const totalPossibleMark = subjectScores.length * 100;
 const percentage = (totalScoresSum / totalPossibleMark) * 100;
 const { grade, remark } = calculateGrade(percentage);
 const totalSubjects = subjectScores.length;
+
+
+
   return (
     <>
       <div>
+        <div className='mt-10'>
+          <h2 className='text-center text-5xl font-bold font-serif'>Simple Field College</h2>
+        </div>
+
+
         <div onClick={handleClick} className="absolute flex flex-1 top-16 left-4 p-3 bg-red-500 rounded-full">
           <ArrowLeftIcon onClick={handleClick} className="h-6 w-6 text-white" />
         </div>
         <div className='flex flex-1 pt-6 justify-between items-center'>
           <div>
             <div className='flex flex-1 gap-24 sm:ml-10 ml-10 lg:ml-10'>
-              <p>Top Academy</p>
+             
             </div>
           </div>
         </div>
@@ -184,37 +183,7 @@ const totalSubjects = subjectScores.length;
 <div className='bg-red-900 mb-5 text-xxs'>
   <p className='p-2 font-bold uppercase text-white'>KEY FOR GRADING: A1 (90-100), B2(80-90), B3 (70-80), C4(60-70), C5 (55-60), C6 (50-54), D (45-49), E (40-44), F (0-39).</p>
   </div>
-
-{/* 
-<table className="min-w-full border border-collapse rounded-lg overflow-hidden">
-  <thead className="bg-red-900 text-white">
-    <tr className='mr-10'>
-      <th className="py-4 px-4 border border-black uppercase">Subject</th>
-      <th className="py-2 px-4 border border-black">1st CA(20)</th>
-      <th className="py-2 px-4 border border-black">2nd CA(20)</th>
-      <th className="py-6 px-4 border border-black">Exam (60)</th>
-      <th className="py-2 px-4 border border-black">Total (100)</th>
-      <th className="py-6 px-4 border border-black">Grade</th>
-      <th className="py-2 px-4 border border-black">Remark</th>
-   
-    </tr>
-  </thead>
-  <tbody>
-    {combinedScores.map((score, index) => (
-      <tr key={index} className={(index % 2 === 0 ? 'bg-gray-100' : 'bg-white')}>
-        <td className="py-2 px-4 text-center border border-black">{score.subject}</td>
-        <td className="py-2 px-4 text-center border border-black">{score.firstCaScores}</td>
-        <td className="py-2 px-4 text-center border border-black">{score.SecondCaScores}</td>
-        <td className="py-2 px-4 text-center border border-black">{score.examScore}</td>
-        <td className="py-2 px-4 text-center border border-black">{score.totalScore}</td>
-        <td className="py-2 px-4 text-center border border-black">{score.grade}</td>
-        <td className="py-2 px-4 text-center border border-black">{score.remark}</td>
-       
-      </tr>
-    ))}
-  </tbody>
-</table> */}
-
+ 
 <table className='min-w-full border border-collapse rounded-lg overflow-hidden'>
   <thead className='bg-red-900 text-white'>
     <tr className='mr-10'>
@@ -222,36 +191,38 @@ const totalSubjects = subjectScores.length;
       <th className="py-2 px-4 border border-black">1st CA(20)</th>
       <th className="py-2 px-4 border border-black">2nd CA(20)</th>
       <th className="py-6 px-4 border border-black">Exam (60)</th>
+     
       <th className="py-2 px-4 border border-black">Total (100)</th>
+      <th className="py-2 px-4 border border-black">Class Average</th>
       <th className="py-6 px-4 border border-black">Grade</th>
       <th className="py-2 px-4 border border-black">Remark</th>
     </tr>
   </thead>
   <tbody>
     {subjectScores
-      .flatMap(nestedArray => nestedArray) // Flatten the nested arrays
+      .flatMap(nestedArray => nestedArray) 
       .map((subjectScore, index) => {
+        const classAverage =parseInt(subjectScore.classTotal) / totalStudent
         const totalScore = parseInt(subjectScore.firstCA) + parseInt(subjectScore.secondCA) + parseInt(subjectScore.exam);
         let grade, remark;
-
   if (totalScore >= 90) {
     grade = 'A1';
     remark = 'Excellent';
-  } else if (totalScore >= 90) {
+  } else if (totalScore >= 80) {
     grade = 'B2';
     remark = 'Excellent';
-  } else if (totalScore >= 80) {
+  } else if (totalScore >= 70) {
     grade = 'B3';
     remark = 'V.Good';
-  } else if (totalScore >=  70) {
+  } else if (totalScore >=  60) {
     grade = 'C4';
     remark = 'Good';
   } 
-  else if (totalScore >= 60) {
+  else if (totalScore >= 55) {
     grade = 'C5';
     remark = 'Good';
   }
-  else if (totalScore >= 54) {
+  else if (totalScore >= 50) {
     grade = 'C6';
     remark = 'Good';
   }
@@ -268,6 +239,7 @@ const totalSubjects = subjectScores.length;
     grade = 'F';
     remark = 'Fail';
   }
+  
 
         return (
           <tr key={index}>
@@ -276,6 +248,7 @@ const totalSubjects = subjectScores.length;
             <td className="py-2 px-4 text-center border border-black">{subjectScore.secondCA}</td>
             <td className="py-2 px-4 text-center border border-black">{subjectScore.exam}</td>
             <td className="py-2 px-4 text-center border border-black">{totalScore}</td>
+            <td className="py-2 px-4 text-center border border-black">{classAverage.toFixed(2) }</td>
             <td className="py-2 px-4 text-center border border-black">{grade}</td>
             <td className="py-2 px-4 text-center border border-black">{remark}</td>
           </tr>

@@ -11,6 +11,7 @@ import EditUserComponent from './components/EditUserComponent/EditUserComponent'
 import UserListComponent from './components/UserListComponent/UserListComponent';
 import AddStudent from './components/AddStudent/AddStudent';
 import UserDetails from './components/UserDetails/UserDetails';
+import Search from './components/Search/Search';
 
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
               <Route path="/class" element={<UserListComponent/> }/>
               <Route path="/add-student" element={<AddStudent/> }/>
               <Route path="/edit-student" element={<UserDetails/> }/>
+              <Route path="/search" element={ <Search/> }/>
+             
 
             
           </Routes>

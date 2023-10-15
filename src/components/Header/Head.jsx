@@ -12,7 +12,7 @@ const Header = () => {
     const [text] = useTypewriter ({
         words:[
             'Welcome To,',
-            'Top Academy...!',
+            'Simple Field College...!',
             
         ],loop:true,
         delaySpeed:2000,

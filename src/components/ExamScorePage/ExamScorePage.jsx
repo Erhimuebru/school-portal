@@ -71,6 +71,7 @@ const ExamScoresPage = () => {
     socialSkills,
     leaderShip,
     practical,
+    subjectScores
   } = state;
 
   const combinedScores = examScores.map((examScore, index) => {
@@ -91,13 +92,14 @@ const ExamScoresPage = () => {
       totalScore,
       grade,
       remark,
-      totalMarks 
+      totalMarks ,
+      subjectScores
     };
   });
 
   const totalScores = combinedScores.reduce((total, score) => total + score.totalScore, 0);
-  const classAverage = totalScores / combinedScores.length;
-  const totalSubjects = examScores.length;
+  // const classAverage = totalScores / combinedScores.length;
+  // const totalSubjects = examScores.length;
   const handleSignOut = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
@@ -109,11 +111,29 @@ const ExamScoresPage = () => {
   };
 
 
-  const totalPossibleMarks = combinedScores.length * 100;
+  // const totalPossibleMarks = combinedScores.length * 100;
 
   // Calculate percentage
-  const percentage = (totalScores / totalPossibleMarks) * 100;
-  const { grade, remark } = calculateGrade(percentage);
+  // const percentage = (totalScores / totalPossibleMarks) * 100;
+  // const { grade, remark } = calculateGrade(percentage);
+
+
+
+
+
+  const totalScore = subjectScores
+  .flatMap(nestedArray => nestedArray)
+  .map(subjectScore => {
+    const totalScore = parseInt(subjectScore.firstCA) + parseInt(subjectScore.secondCA) + parseInt(subjectScore.exam);
+    return totalScore;
+  });
+
+const classAverage = totalScore.length > 0 ? totalScore.reduce((acc, score) => acc + score, 0) / totalScore.length : 0;
+const totalScoresSum = totalScore.reduce((acc, score) => acc + score, 0);
+const totalPossibleMark = subjectScores.length * 100;
+const percentage = (totalScoresSum / totalPossibleMark) * 100;
+const { grade, remark } = calculateGrade(percentage);
+const totalSubjects = subjectScores.length;
   return (
     <>
       <div>
@@ -165,10 +185,10 @@ const ExamScoresPage = () => {
   <p className='p-2 font-bold uppercase text-white'>KEY FOR GRADING: A1 (90-100), B2(80-90), B3 (70-80), C4(60-70), C5 (55-60), C6 (50-54), D (45-49), E (40-44), F (0-39).</p>
   </div>
 
-
+{/* 
 <table className="min-w-full border border-collapse rounded-lg overflow-hidden">
   <thead className="bg-red-900 text-white">
-    <tr className='mr-10-'>
+    <tr className='mr-10'>
       <th className="py-4 px-4 border border-black uppercase">Subject</th>
       <th className="py-2 px-4 border border-black">1st CA(20)</th>
       <th className="py-2 px-4 border border-black">2nd CA(20)</th>
@@ -176,7 +196,7 @@ const ExamScoresPage = () => {
       <th className="py-2 px-4 border border-black">Total (100)</th>
       <th className="py-6 px-4 border border-black">Grade</th>
       <th className="py-2 px-4 border border-black">Remark</th>
-      {/* <th className="py-2 px-4">Class Average</th>  */}
+   
     </tr>
   </thead>
   <tbody>
@@ -189,9 +209,78 @@ const ExamScoresPage = () => {
         <td className="py-2 px-4 text-center border border-black">{score.totalScore}</td>
         <td className="py-2 px-4 text-center border border-black">{score.grade}</td>
         <td className="py-2 px-4 text-center border border-black">{score.remark}</td>
-        {/* <td className="py-2 px-4 text-center border border-black">{classAverage.toFixed(2)}</td> */}
+       
       </tr>
     ))}
+  </tbody>
+</table> */}
+
+<table className='min-w-full border border-collapse rounded-lg overflow-hidden'>
+  <thead className='bg-red-900 text-white'>
+    <tr className='mr-10'>
+    <th className="py-4 px-4 border border-black uppercase">Subject</th>
+      <th className="py-2 px-4 border border-black">1st CA(20)</th>
+      <th className="py-2 px-4 border border-black">2nd CA(20)</th>
+      <th className="py-6 px-4 border border-black">Exam (60)</th>
+      <th className="py-2 px-4 border border-black">Total (100)</th>
+      <th className="py-6 px-4 border border-black">Grade</th>
+      <th className="py-2 px-4 border border-black">Remark</th>
+    </tr>
+  </thead>
+  <tbody>
+    {subjectScores
+      .flatMap(nestedArray => nestedArray) // Flatten the nested arrays
+      .map((subjectScore, index) => {
+        const totalScore = parseInt(subjectScore.firstCA) + parseInt(subjectScore.secondCA) + parseInt(subjectScore.exam);
+        let grade, remark;
+
+  if (totalScore >= 90) {
+    grade = 'A1';
+    remark = 'Excellent';
+  } else if (totalScore >= 90) {
+    grade = 'B2';
+    remark = 'Excellent';
+  } else if (totalScore >= 80) {
+    grade = 'B3';
+    remark = 'V.Good';
+  } else if (totalScore >=  70) {
+    grade = 'C4';
+    remark = 'Good';
+  } 
+  else if (totalScore >= 60) {
+    grade = 'C5';
+    remark = 'Good';
+  }
+  else if (totalScore >= 54) {
+    grade = 'C6';
+    remark = 'Good';
+  }
+  else if (totalScore >= 45) {
+    grade = 'D';
+    remark = 'Fair';
+  }
+  else if (totalScore >= 40) {
+    grade = 'E';
+    remark = 'Pass';
+  }
+
+  else {
+    grade = 'F';
+    remark = 'Fail';
+  }
+
+        return (
+          <tr key={index}>
+            <td className="py-2 px-4 text-center border border-black">{subjectScore.subject}</td>
+            <td className="py-2 px-4 text-center border border-black">{subjectScore.firstCA}</td>
+            <td className="py-2 px-4 text-center border border-black">{subjectScore.secondCA}</td>
+            <td className="py-2 px-4 text-center border border-black">{subjectScore.exam}</td>
+            <td className="py-2 px-4 text-center border border-black">{totalScore}</td>
+            <td className="py-2 px-4 text-center border border-black">{grade}</td>
+            <td className="py-2 px-4 text-center border border-black">{remark}</td>
+          </tr>
+        );
+      })}
   </tbody>
 </table>
 
@@ -205,25 +294,25 @@ const ExamScoresPage = () => {
 <div className='rounded-sm container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-x-28 mb-4'>
  
           <div>  
-                    <p className='pb-3'>punctuality: {punctuality}</p>
-                    <p  className='pb-3'>neatness: {neatness}</p>
-                    <p className='pb-3'>health: {health}</p>
-                    <p className='pb-3'>emotional Stabilty: {emotionalStabilty}</p>
+                    <p className='pb-3 whitespace-nowrap'>punctuality: {punctuality}</p>
+                    <p  className='pb-3 whitespace-nowrap'>neatness: {neatness}</p>
+                    <p className='pb-3 whitespace-nowrap'>health: {health}</p>
+                    <p className='pb-3 whitespace-nowrap'>emotional Stabilty: {emotionalStabilty}</p>
           </div>
 
 
           <div> 
-                    <p className='pb-3'>honesty: {honesty}</p>
-                    <p className='pb-3'>sport: {sport}</p>
-                    <p className='pb-3'>writing: {writing}</p>
-                    <p className='pb-3'>greeting: {greeting}</p>
+                    <p className='pb-3 whitespace-nowrap'>honesty: {honesty}</p>
+                    <p className='pb-3 whitespace-nowrap'>sport: {sport}</p>
+                    <p className='pb-3 whitespace-nowrap'>writing: {writing}</p>
+                    <p className='pb-3 whitespace-nowrap'>greeting: {greeting}</p>
           </div>
           
           <div>
                  
-                    <p className='pb-3'>social Skills: {socialSkills}</p>
-                    <p className='pb-3'>leaderShip skills: {leaderShip}</p>
-                    <p className='pb-3'>practicals: {practical}</p>
+                    <p className='pb-3 whitespace-nowrap'>social Skills: {socialSkills}</p>
+                    <p className='pb-3 whitespace-nowrap'>leaderShip skills: {leaderShip}</p>
+                    <p className='pb-3 whitespace-nowrap'>practicals: {practical}</p>
                     <p className='pb-3 whitespace-nowrap'>ATTITUDE TO ACCADEMICS: {atitude}</p>
           </div>
 
@@ -238,24 +327,31 @@ const ExamScoresPage = () => {
             <div className='rounded-sm container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-x-20 mb-4'>
 
                     <div>
-                              <p className='pb-3 font-bold whitespace-nowrap uppercase'>TOTAL MARKS OBTAINABLE: {totalPossibleMarks}</p>
-                              <p className='pb-3 font-bold uppercase'>TOTAL SUBJECT OFFERED: {totalSubjects}</p>
-                              <p className='pb-3 font-bold uppercase'>Remark: {remark}</p>
+                              <p className='pb-3 font-bold whitespace-nowrap uppercase'>TOTAL MARKS OBTAINABLE: {totalPossibleMark}</p>
+                              <p className='pb-3 font-bold uppercase whitespace-nowrap'>TOTAL SUBJECT OFFERED: {totalSubjects}</p>
+                              <p className='pb-3 font-bold uppercase'>Grade: {grade}</p>
+                             
                     </div>
 
 
 
                     <div>
                             <p className='pb-3 font-bold uppercase'>PERCENTAGE: {percentage.toFixed(2)}%</p>
-                            <p className='pb-3 font-bold uppercase'>TOTAL MARKS OBTAINED: {totalScores}</p>
-                            <p className='pb-3 font-bold uppercase'>Grade: {grade}</p>
+                            <p className='pb-3 font-bold uppercase'>TOTAL MARKS OBTAINED: {totalScoresSum}</p>
+                            <p className='pb-3 font-bold uppercase whitespace-nowrap' >Remark: {remark}</p>
                     </div>
 
             </div>
 </div>
 
 
-          <div className="py-6 px-4 text-center">Class Average: {classAverage.toFixed(2)}</div>
+<div>
+      {/* <p>Class Average: {classAverage.toFixed(2)}</p> */}
+      
+    </div>
+
+
+          {/* <div className="py-6 px-4 text-center">Class Average: {classAverage.toFixed(2)}</div> */}
         </div>
         <div onClick={handleSignOut} className="absolute right-2 lg:right-28 mt-4 rounded-md cursor-pointer p-2 bg-[red]">
           <p className="text-white font-extrabold">Sign out</p>

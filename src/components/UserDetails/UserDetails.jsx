@@ -1,7 +1,57 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
+// import { Link } from 'react-router-dom'; // Import useHistory from react-router-dom
+// import axios from 'axios';
 
-const AddStudent = () => {
-  const [subjectScores, setSubjectScores] = useState([{ subject: '', firstCA: '', secondCA: '', exam: '' }]);
+// const UserDetails = ({ userId }) => {
+//   const [userData, setUserData] = useState({});
+// //   const history = useHistory(); // Get the history object
+
+//   useEffect(() => {
+//     const fetchUserData = async () => {
+//       try {
+//         // const response = await axios.get(`http://localhost:4000/users/${userId}`);
+//         const response = await axios.get(`http://localhost:4000/users/6529c5c1b23dff971853c791`);
+      
+//         setUserData(response.data);
+//         console.log(response.data)
+//         // Navigate to a new page after fetching data (for example, the home page)
+//         // history.push('/'); // Change the path to the desired page
+//       } catch (error) {
+//         console.error('Error fetching user data:', error);
+//       }
+//     };
+
+//     fetchUserData();
+//   }, [userId]); // Add history to the dependency array
+
+//   return (
+//     <div>
+//       <h2>User Details</h2>
+//       <p>Name: {userData.name}</p>
+//       {/* Display other user details */}
+//       <Link to={`/users/edit/${userId}`}>
+//         <button>Edit</button>
+//       </Link>
+//     </div>
+//   );
+// };
+
+// export default UserDetails;
+
+
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+
+const UserDetails = () => {
+  const { userId } = useParams(); // Get the userId from the URL parameter
+  const [user, setUser] = useState({});
+ 
+  const [subjectScores, setSubjectScores] = useState([]);
+
+
+
+//   const [subjectScores, setSubjectScores] = useState([{ subject: '', firstCA: '', secondCA: '', exam: '' }]);
 
   const handleSubjectChange = (index, newSubject) => {
     const updatedScores = [...subjectScores];
@@ -73,6 +123,7 @@ const handleRemoveSubject = (e,index) => {
 
 
 
+
   const [formData, setFormData] = useState({
     surname: '',
     password: '',
@@ -104,93 +155,52 @@ const handleRemoveSubject = (e,index) => {
     socialSkills: '',
     leaderShip: '',
     practical: '',
-    subjectScores:[],
-    subject: '',
-     firstCA: '',
-      secondCA: '', 
-      exam: ''
+    subjectScores:subjectScores
   });
-
-
-  
-
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      // Make the API call to add a new user
-      const response = await fetch('http://localhost:4000/users/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        console.log('User added successfully.');
-        // Reset the form after successful submission
-        setFormData({
-          surname: '',
-          password: '',
-          fullName: '',
-          classSection: '',
-          paymentStatus: '',
-          age: '',
-          house: '',
-          timeAbsent: '',
-          timePresent: '',
-          gender: '',
-          term: '',
-          totalStudent: '',
-          timeSchoolOpen: '',
-          department: '',
-          caSubject: '', 
-          firstCaScores: [],
-          SecondCaScores: [],
-          examScores: [],
-          punctuality: '',
-          neatness: '',
-          health: '',
-          emotionalStabilty: '',
-          honesty: '',
-          sport: '',
-          writing: '',
-          greeting: '',
-          atitude: '',
-          socialSkills: '',
-          leaderShip: '',
-          practical: '',
-          subjectScores: [],
-          firstCA: '',
-          secondCA: '', 
-          exam: ''
-        });
-
-        setSubjectScores([{ subject: '', firstCA: '', secondCA: '', exam: '' }])
-         
-        console.log('User gone successfully', formData)
-        // setFormData();
-      } else {
-        console.error('Failed to add user.');
-      }
-    } catch (error) {
-      console.error('Error adding user:', error);
-    }
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  
+
+
+  const flattenedArray = subjectScores.flatMap(innerArray => innerArray);
+
+  useEffect(() => {
+    // Fetch the user data for editing
+    axios.get(`http://localhost:4000/users/652a6fbcdb3e700329547eb3`)
+      .then((response) => {
+        setUser(response.data);
+        setSubjectScores(response.data.subjectScores);
+        console.log(response.data)
+        console.log("good scores",response.data.subjectScores)
+       
+        // Set the editedUser state with the fetched user data
+        setFormData(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching user data:', error);
+      });
+  }, [userId]);
+
+  const handleEdit = () => {
+    // Send a PUT request to update the user's data
+    axios.put(`http://localhost:4000/users/6529c5c1b23dff971853c791`, formData)
+      .then((response) => {
+        console.log(response.data)
+        // Handle success, e.g., show a success message or redirect to the user's profile
+        // Redirect to the user's profile after editing (you can define the route)
+        // history.push(`/users/${userId}`);
+      })
+      .catch((error) => {
+        console.error('Error updating user data:', error);
+      });
+  };
 
   return (
     <div className="container mx-auto mt-10 p-6 bg-gray-100 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-center"> New Student Info</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <h2 className="text-2xl font-bold mb-6 text-center"> Edit Student</h2>
+      <form onSubmit={handleEdit}  className="space-y-4">
         {/* Surname */}
         <div>
           <label htmlFor="surname" className="block font-semibold text-gray-800">Surname</label>
@@ -204,20 +214,6 @@ const handleRemoveSubject = (e,index) => {
           />
         </div>
 
-
-
-{/* Password */}
-<div>
-          <label htmlFor="password" className="block font-semibold text-gray-800">Password</label>
-          <input
-            type="password"
-            id="password"
-            className="mt-1 p-2 border rounded w-full"
-            value={formData.password}
-            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-            required
-          />
-        </div>
 
         {/* Full Name */}
         <div>
@@ -258,21 +254,6 @@ const handleRemoveSubject = (e,index) => {
             required
           />
         </div>
-
-
-        {/* Payment Status */}
-        {/* <div>
-          <label htmlFor="paymentStatus" className="block font-semibold text-gray-800">Payment Status</label>
-          <input
-            type="text"
-            id="paymentStatus"
-            className="mt-1 p-2 border rounded w-full"
-            value={formData.paymentStatus}
-            onChange={(e) => setFormData({ ...formData, paymentStatus: e.target.value })}
-            required
-          />
-        </div> */}
-
 
          <div className="mb-4">
           <label htmlFor="paymentStatus" className="block text-sm font-medium text-gray-600">
@@ -367,18 +348,6 @@ const handleRemoveSubject = (e,index) => {
           />
         </div>
 
-        {/* Gender */}
-        {/* <div>
-          <label htmlFor="gender" className="block font-semibold text-gray-800">Gender</label>
-          <input
-            type="text"
-            id="gender"
-            className="mt-1 p-2 border rounded w-full"
-            value={formData.gender}
-            onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-            required
-          />
-        </div> */}
 
 
          <div className="mb-4">
@@ -401,20 +370,6 @@ const handleRemoveSubject = (e,index) => {
         </div>
 
 
-
-
-        {/* Term */}
-        {/* <div>
-          <label htmlFor="term" className="block font-semibold text-gray-800">Term</label>
-          <input
-            type="text"
-            id="term"
-            className="mt-1 p-2 border rounded w-full"
-            value={formData.term}
-            onChange={(e) => setFormData({ ...formData, term: e.target.value })}
-            required
-          />
-        </div> */}
 
 
          <div className="mb-4">
@@ -455,48 +410,51 @@ const handleRemoveSubject = (e,index) => {
             required
           />
         </div>
+{/*  */}
 
 
 
- <div className="w-full p-4 bg-white rounded shadow-lg mt-8">
+<div className="w-full p-4 bg-white rounded shadow-lg mt-8">
       <h1 className="text-2xl font-bold mb-4">Performance</h1>
-      {subjectScores?.map((subjectScore, index) => (
-        <div key={index} className="mb-10">
-          <select
-            value={subjectScore.subject}
-            onChange={(e) => handleSubjectChange(index, e.target.value)}
-            className="border border-gray-400 p-2 rounded mr-2"
-          >
-            <option value="">Select Subject</option>
-            <option value="Mathematics">Mathematics</option>
-            <option value="English">English</option>
-            <option value="Marketing">Marketing</option>
-            <option value="Computer">Computer</option>
-            {/* Add more subject options */}
-          </select>
-          <input
-            type="number"
-            placeholder="First CA"
-            value={subjectScore.firstCA}
-            onChange={(e) => handleFCAChange(index, e.target.value)}
-            className="border border-gray-400 p-2 rounded mr-2"
-          />
-          <input
-            type="number"
-            placeholder="Second CA"
-            value={subjectScore.secondCA}
-            onChange={(e) => handleSCAChange(index, e.target.value)}
-            className="border border-gray-400 p-2 rounded mr-2"
-          />
-          <input
-            type="number"
-            placeholder="Exam Score"
-            value={subjectScore.exam}
-            onChange={(e) => handleExamChange(index, e.target.value)}
-            className="border border-gray-400 p-2 rounded mr-2"
-          />
-        </div>
-      ))}
+      {flattenedArray.map((subjectScore, index) => (
+  <div key={index} className="mb-10">
+    <select
+      value={subjectScore.subject}
+      onChange={(e) => handleSubjectChange(index, e.target.value)}
+      className="border border-gray-400 p-2 rounded mr-2"
+    >
+      <option value="">Select Subject</option>
+      <option value="Mathematics">Mathematics</option>
+      <option value="English">English</option>
+      {/* Add more subject options */}
+    </select>
+
+    <input
+      type="number"
+      placeholder="First CA"
+      value={subjectScore.firstCA}  
+      onChange={(e) => handleFCAChange(index, e.target.value)}
+      className="border border-gray-400 p-2 rounded mr-2"
+    />
+
+    <input
+      type="number"
+      placeholder="Second CA"
+      value={subjectScore.secondCA}  
+      onChange={(e) => handleSCAChange(index, e.target.value)}
+      className="border border-gray-400 p-2 rounded mr-2"
+    />
+
+    <input
+      type="number"
+      placeholder="Exam Score"
+      value={subjectScore.exam} 
+      onChange={(e) => handleExamChange(index, e.target.value)}
+      className="border border-gray-400 p-2 rounded mr-2"
+    />
+  </div>
+))}
+
       <button onClick={confirmSubject} className="bg-blue-500 text-white py-2 mb-6 px-4 rounded mr-2">
         Confirm Subjects
       </button>
@@ -516,6 +474,7 @@ const handleRemoveSubject = (e,index) => {
   Remove Subject
 </button>
     </div>
+
 
 
 
@@ -794,16 +753,23 @@ const handleRemoveSubject = (e,index) => {
 
         {/* Submit Button */}
         <div>
-          <button
+          {/* <button
             type="submit" onClick={handleSubmit}
             className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
           >
             Add Student
-          </button>
-        </div>
+          </button> */}
+
+</div>
+        {/* Add more input fields for other user properties */}
+        <button type="submit" className="bg-[green] text-white py-2 px-4 rounded mr-2">Save Changes</button>
+      
+        
       </form>
     </div>
+    
   );
 };
 
-export default AddStudent;
+export default UserDetails;
+

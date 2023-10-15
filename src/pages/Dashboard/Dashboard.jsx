@@ -113,8 +113,11 @@ const Dashboard = () => {
     const socialSkills =user?.socialSkills
     const leaderShip = user?.leaderShip
     const  practical = user?.practical
+    const  subjectScores = user?.subjectScores
+
     console.log('Exam Scores:', examScores);
     navigate('/exam-scores', { state: {age:age, term:term, 
+      subjectScores:subjectScores,
       punctuality:punctuality,
       neatness:neatness,
       health:health,

@@ -166,7 +166,9 @@ const handleRemoveSubject = (e,index) => {
     subject: '',
      firstCA: '',
       secondCA: '', 
-      exam: ''
+      exam: '',
+      teacher:'',
+      pricinpal:'',
   });
 
 
@@ -224,7 +226,9 @@ const handleRemoveSubject = (e,index) => {
           subjectScores:subjectScores,
           firstCA: '',
           secondCA: '', 
-          exam: ''
+          exam: '',
+          teacher:'',
+          pricinpal:'',
         });
 
         setSubjectScores([
@@ -872,6 +876,32 @@ const handleRemoveSubject = (e,index) => {
             <option value="Fail">Fail</option>
             {/* Add more options as needed */}
           </select>
+        </div>
+
+
+          
+        <div>
+          <label htmlFor="teacher" className="block font-semibold text-gray-800">Teachers Comments</label>
+          <input
+            type="text"
+            id="teacher"
+            className="mt-1 p-2 border rounded w-full"
+            value={formData.teacher}
+            onChange={(e) => setFormData({ ...formData, teacher: e.target.value })}
+            required
+          />
+        </div>
+
+        <div>
+          <label htmlFor="pricinpal" className="block font-semibold text-gray-800">Pricinpal Comments</label>
+          <input
+            type="text"
+            id="pricinpal"
+            className="mt-1 p-2 border rounded w-full"
+            value={formData.pricinpal}
+            onChange={(e) => setFormData({ ...formData, pricinpal: e.target.value })}
+            required
+          />
         </div>
 
 

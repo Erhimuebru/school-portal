@@ -71,6 +71,8 @@ const handleRemoveSubject = (e,index) => {
     leaderShip: '',
     practical: '',
     subjectScores:subjectScores,
+    teacher:'',
+    pricinpal:'',
   });
 
 
@@ -79,35 +81,6 @@ const handleRemoveSubject = (e,index) => {
     setFormData({ ...formData, [name]: value });
   };
   
-
-
-// const handleInputChanges = (index, name, value) => {
-//   const updatedSubjectScores = [...subjectScores];
-//   updatedSubjectScores[index] = {
-//     ...updatedSubjectScores[index],
-//     [name]: value,
-//   };
-//   setSubjectScores(updatedSubjectScores);
-// };
-
-
-// const handleInputChanges = (index, name, value) => {
-//   // Create a copy of the current state
-//   const updatedSubjectScores = [...subjectScores];
-  
-//   // Create a copy of the specific object within the array that needs to be updated
-//   const updatedSubject = { ...updatedSubjectScores[index] };
-
-//   // Update the specific field in the copied object
-//   updatedSubject[name] = value;
-
-//   // Update the specific object within the array
-//   updatedSubjectScores[index] = updatedSubject;
-
-//   // Update the state with the modified array
-//   setSubjectScores(updatedSubjectScores);
-// };
-
   
 const handleInputChanges = (index, name, value) => {
   const updatedSubjectScores = [...subjectScores];
@@ -715,7 +688,29 @@ const handleInputChanges = (index, name, value) => {
         {/* Submit Button */}
         <div>
        
+        <div>
+          <label htmlFor="teacher" className="block font-semibold text-gray-800">Teachers Comments</label>
+          <input
+            type="text"
+            id="teacher"
+            className="mt-1 p-2 border rounded w-full"
+            value={formData.teacher}
+            onChange={(e) => setFormData({ ...formData, teacher: e.target.value })}
+            required
+          />
+        </div>
 
+        <div>
+          <label htmlFor="pricinpal" className="block font-semibold text-gray-800">Pricinpal Comments</label>
+          <input
+            type="text"
+            id="pricinpal"
+            className="mt-1 p-2 border rounded w-full"
+            value={formData.pricinpal}
+            onChange={(e) => setFormData({ ...formData, pricinpal: e.target.value })}
+            required
+          />
+        </div>
 </div>
       
         <button type="submit" className="bg-[green] text-white py-2 px-4 rounded mr-2">Save Changes</button>

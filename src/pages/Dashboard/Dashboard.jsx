@@ -115,6 +115,8 @@ const Dashboard = () => {
     const leaderShip = user?.leaderShip
     const  practical = user?.practical
     const  subjectScores = user?.subjectScores
+   const pricinpal = user?.pricinpal
+    const teacher = user?.teacher
 
     console.log('Exam Scores:', examScores);
     navigate('/exam-scores', { state: {age:age, term:term, 
@@ -131,6 +133,8 @@ const Dashboard = () => {
       socialSkills:socialSkills,
       leaderShip:leaderShip,
       practical:practical,
+      pricinpal:pricinpal,
+      teacher:teacher,
       gender:gender, timeSchoolOpen:timeSchoolOpen, department:department,  timePresent:timePresent , timeAbsent :timeAbsent, house:house, examScores: examScores,  totalStudent:totalStudent,   SecondCaScores:  SecondCaScores, firstCaScores:firstCaScores, fullName:fullName, classSection:classSection } });
   };
 

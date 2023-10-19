@@ -71,7 +71,9 @@ const ExamScoresPage = () => {
     socialSkills,
     leaderShip,
     practical,
-    subjectScores
+    subjectScores,
+    pricinpal,
+    teacher
   } = state;
 
   const combinedScores = examScores.map((examScore, index) => {
@@ -319,20 +321,15 @@ const totalSubjects = subjectScores.length;
 
 
 <div>
-      {/* <p>Class Average: {classAverage.toFixed(2)}</p> */}
+    
       
     </div>
 
-
-          {/* <div className="py-6 px-4 text-center">Class Average: {classAverage.toFixed(2)}</div> */}
         </div>
         <div onClick={handleSignOut} className="absolute right-2 lg:right-28 mt-4 rounded-md cursor-pointer p-2 bg-[red]">
           <p className="text-white font-extrabold">Sign out</p>
         </div>
 
-        <div className="">
-          <p className="text-white font-extrabold">Pricinple Comment</p>
-        </div>
       </div>
     </>
   );

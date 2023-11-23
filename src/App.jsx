@@ -13,8 +13,13 @@ import AddStudent from './components/AddStudent/AddStudent';
 import UserDetails from './components/UserDetails/UserDetails';
 import Search from './components/Search/Search';
 
-
 function App() {
+
+
+
+
+
+
   return (
     <>
 {/* <Navbar/>  */}

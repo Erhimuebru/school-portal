@@ -59,9 +59,10 @@ function Navbar() {
             </div>
           )}
         </div>
+        
         {/* Logo */}
 
-        
+
 
 
 

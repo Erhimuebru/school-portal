@@ -1,6 +1,6 @@
 import React from 'react'
 import {MapPinIcon} from "@heroicons/react/24/solid"
-// import { SocialIcon } from 'react-social-icons'
+import { SocialIcon } from 'react-social-icons'
 
 const Footer = () => {
     return (
@@ -36,7 +36,6 @@ const Footer = () => {
           <p className="text-center text-gray-400">© 2023 Your Company. All rights reserved.</p>
         </div>
       </footer>
-      
       
     );
 }
